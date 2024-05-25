@@ -16,7 +16,7 @@ WIP
 
 ## UI resourcepacks
 
-WIP
+[Modernity-GTNH-UI](https://github.com/ABKQPO/Modernity-GTNH-UI)
 
 
 # Images
