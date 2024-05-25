@@ -19,10 +19,11 @@ WIP
 WIP
 
 
-
 # Images
 
-WIP
+
+  ### SGcraft
+  <img src="https://raw.githubusercontent.com/ABKQPO/Modernity-GTNH/main/Screenshots/SGcraft.jpg" />
 
 
 ## Here are some of the modules that have already been redesigned:
