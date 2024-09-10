@@ -21,6 +21,12 @@ WIP
 [Modernity-GTNH-Dark-UI](https://github.com/ABKQPO/Modernity-GTNH-Dark-UI)
 
 
+##CTM Textures
+
+If you want to use connected textures, please download this mod [here](https://github.com/wohaopa/MyCTMLib) and place the `MyCTMLib.cfg` file into the `config folder`
+> Note: This mod is only compatible with GTNH 2.7.0+
+
+
 # Images
 
 
@@ -28,9 +34,6 @@ WIP
   <img src="https://raw.githubusercontent.com/ABKQPO/Modernity-GTNH/main/Screenshots/SGcraft.jpg" />
 
 
-## Here are some of the modules that have already been redesigned:
-
-[SGCraft-1.4.4-GTNH](https://github.com/GTNewHorizons/SGCraft/releases)
 
 
 ### Licensing
