@@ -34,7 +34,9 @@ If you want to use connected textures, please download this mod here [`MyCTMLib`
   <img src="https://raw.githubusercontent.com/ABKQPO/Modernity-GTNH/main/Screenshots/SGcraft.jpg" />
 
 
+## Join us
 
+QQ : 961382654
 
 ### Licensing
 
