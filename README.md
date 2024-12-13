@@ -29,6 +29,8 @@ If you want to use connected textures, please download this mod here [`MyCTMLib`
 > Note: This mod is only compatible with GTNH 2.7.0+
 >
 >The mod is temporarily suspended from updating, but it can still be used.
+>
+>  ### There is a serious Z-Fighting issue!
 
 
 # Images
