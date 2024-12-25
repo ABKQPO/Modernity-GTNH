@@ -37,7 +37,12 @@ If you want to use connected textures, please download this mod here [`MyCTMLib`
 
 
   ### SGcraft
-  <img src="https://raw.githubusercontent.com/ABKQPO/Modernity-GTNH/main/Screenshots/SGcraft.jpg" />
+  <img src="https://raw.githubusercontent.com/ABKQPO/Modernity-GTNH/main/Screenshots/SGcraft.png" />
+  
+
+
+  ### GT5U Materials
+  <img src="https://raw.githubusercontent.com/ABKQPO/Modernity-GTNH/main/Screenshots/Materials.png" />
 
 
 ## Join us
