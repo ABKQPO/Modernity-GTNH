@@ -44,6 +44,15 @@ If you want to use connected textures, please download this mod here [`MyCTMLib`
   ### GT5U Materials
   <img src="https://raw.githubusercontent.com/ABKQPO/Modernity-GTNH/main/Screenshots/Materials.png" />
 
+## Special Thanks
+
+MCTBL
+
+黑崎
+
+Tree_er
+
+茶柒
 
 ## Join us
 
