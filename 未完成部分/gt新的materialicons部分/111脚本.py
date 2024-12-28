@@ -49,6 +49,6 @@ def process_images(input_image_path, target_folder_path, frametime):
 
 # 示例用法
 input_image_path = 'E:\\Github\\Modernity-GTNH\\未完成部分\\gt新的materialicons部分\\capsule.png'
-target_folder_path = 'E:\\Github\\Modernity-GTNH\\未完成部分\\gt新的materialicons部分\\MagnetohydrodynamicallyConstrainedStarMatter'
+target_folder_path = 'E:\\Github\\Modernity-GTNH\\未完成部分\\gt新的materialicons部分\\protohalkonite'
 frametime = 1
 process_images(input_image_path, target_folder_path, frametime)
