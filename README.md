@@ -22,6 +22,13 @@ WIP
 
 ~~[Modernity-GTNH-Dark-UI](https://github.com/ABKQPO/Modernity-GTNH-Dark-UI)~~ Not considering for now
 
+## Additional Resourcepacks
+
+[Modernity-Bees](https://github.com/DarkScorpyon/Just-Productive-Bees-)
+
+[Only-Forestry-Bees](https://github.com/DarkScorpyon/Just-Forestry-Bees-)
+
+*Thanks DarkScorpyon!*
 
 ## CTM Textures
 
@@ -53,6 +60,8 @@ MCTBL
 Tree_er
 
 茶柒
+
+DarkScorpyon
 
 ## Join us
 
