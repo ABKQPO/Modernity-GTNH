@@ -32,10 +32,11 @@ WIP
 
 ## CTM Textures
 
-If you want to use connected textures, please download this mod here [`MyCTMLib`](https://github.com/wohaopa/MyCTMLib) and place the `MyCTMLib.cfg` file into the `config folder`
+If you want to use connected textures, please download this mod here [`MyCTMLib`](https://github.com/xiaoxing2005/MyCTMLib) and place the `MyCTMLib.cfg` file into the `config folder`
 > Note: This mod is only compatible with GTNH 2.7.0+
 >
->The mod is temporarily suspended from updating, but it can still be used.
+>Older mod is temporarily suspended from updating, but it can still be used.
+>https://github.com/wohaopa/MyCTMLib
 >
 >  ### There is a serious Z-Fighting issue!
 
@@ -70,3 +71,8 @@ QQ : 961382654
 ### Licensing
 
  [![](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellow.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+### Additional Credits
+Thanks to Aim__Boot for letting us use the following textures from Ashen:
+bone block, mossy brick, cobblestone, mossy cobblestone, diamond block, gold block, gravel, raw iron block, lapis block
+Ashen main page: https://www.curseforge.com/minecraft/texture-packs/ashen-16x
