@@ -37,6 +37,7 @@ If you want to use connected textures, please download this mod here [`MyCTMLib`
 >
 >Older mod is temporarily suspended from updating, but it can still be used.
 >https://github.com/wohaopa/MyCTMLib
+>https://github.com/Soammer/MyCTMLib
 >
 >  ### There is a serious Z-Fighting issue!
 
