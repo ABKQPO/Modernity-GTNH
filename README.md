@@ -40,7 +40,8 @@ If you want to use connected textures, please download this mod here [`MyCTMLib`
 >
 >https://github.com/Soammer/MyCTMLib
 >
->  ### There is a serious Z-Fighting issue!
+>  ~~### There is a serious Z-Fighting issue!~~
+> This issue has been fixed, but there are still some minor problems remaining
 
 
 # Images
