@@ -37,6 +37,7 @@ If you want to use connected textures, please download this mod here [`MyCTMLib`
 >
 >Older mod is temporarily suspended from updating, but it can still be used.
 >https://github.com/wohaopa/MyCTMLib
+>
 >https://github.com/Soammer/MyCTMLib
 >
 >  ### There is a serious Z-Fighting issue!
@@ -77,6 +78,7 @@ QQ : 961382654
 Thanks to Aim__Boot for letting us use the following textures from Ashen:
 bone block, mossy brick, cobblestone, mossy cobblestone, diamond block, gold block, gravel, raw iron block, lapis block
 Ashen main page: https://www.curseforge.com/minecraft/texture-packs/ashen-16x
+
 
 Thanks to Ghostipedia for letting us use the following textures from CosmicCore
 CosmicCore main page: https://github.com/Frontiers-PackForge/CosmicCore
