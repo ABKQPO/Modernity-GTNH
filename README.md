@@ -32,8 +32,11 @@ WIP
 
 ## CTM Textures
 
-If you want to use connected textures, please download this mod here [`MyCTMLib`](https://github.com/xiaoxing2005/MyCTMLib) and place the `MyCTMLib.cfg` file into the `config folder`
-> Note: This mod is only compatible with GTNH 2.7.0+
+If you want to use connected textures, please download this mod here [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and place the `MyCTMLib.cfg` file into the `config folder`
+> Note: This mod is only compatible with GTNH 2.8.0+
+>
+> Here is GTNH 2.7.0+ Version
+> https://github.com/ElytraServers/MyCTMLib
 >
 >Older mod is temporarily suspended from updating, but it can still be used.
 >https://github.com/wohaopa/MyCTMLib
