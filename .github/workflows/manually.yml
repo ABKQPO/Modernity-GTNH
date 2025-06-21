@@ -18,7 +18,7 @@ jobs:
         README.md
       JAR_URLS: |
         https://github.com/ABKQPO/MyCTMLib/releases/download/v1.0.3_28x/MyCTMLib-v1.0.3_28x.jar
-        https://github.com/ABKQPO/MyCTMLib/releases/download/v1.0.3_28x/MyCTMLib-v1.0.3_27x_hotfix.jar
+        https://github.com/ABKQPO/MyCTMLib/releases/download/v1.0.3_27x_hotfix/MyCTMLib-v1.0.3_27x_hotfix.jar
 
     steps:
       - name: Checkout repository at release tag
