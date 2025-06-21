@@ -12,7 +12,6 @@ jobs:
       contents: write
 
     env:
-      ZIP_NAME: release-${{ github.sha }}.zip
       INCLUDE_PATHS: |
         assets/
         MyCTMLib.cfg
@@ -24,6 +23,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Get short commit hash
+        id: vars
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
       - name: Set up zip file
         run: |
           mkdir zip-root
@@ -31,13 +34,13 @@ jobs:
             cp -r --parents "$path" zip-root/
           done
           cd zip-root
-          zip -r ../$ZIP_NAME ./
+          zip -r ../Modernity-GTNH-${SHORT_SHA}.zip ./
         shell: bash
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: Commit ${{ github.sha }}
-          tag_name: commit-${{ github.sha }}
+          name: Commit ${{ env.SHORT_SHA }}
+          tag_name: commit-${{ env.SHORT_SHA }}
           prerelease: true
-          files: ${{ env.ZIP_NAME }}
+          files: Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
