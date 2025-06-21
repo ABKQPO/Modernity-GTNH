@@ -1,0 +1,43 @@
+name: Build & Release Commit Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    env:
+      ZIP_NAME: release-${{ github.sha }}.zip
+      INCLUDE_PATHS: |
+        assets/
+        MyCTMLib.cfg
+        pack.mcmeta
+        pack.png
+        README.md
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up zip file
+        run: |
+          mkdir zip-root
+          for path in $INCLUDE_PATHS; do
+            cp -r --parents "$path" zip-root/
+          done
+          cd zip-root
+          zip -r ../$ZIP_NAME ./
+        shell: bash
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Commit ${{ github.sha }}
+          tag_name: commit-${{ github.sha }}
+          prerelease: true
+          files: ${{ env.ZIP_NAME }}
