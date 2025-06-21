@@ -1,0 +1,53 @@
+name: Manually Build
+on:
+  release:
+    types: [created]
+
+jobs:
+  package-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    env:
+      INCLUDE_PATHS: |
+        assets/
+        MyCTMLib.cfg
+        pack.mcmeta
+        pack.png
+        README.md
+      JAR_URLS: |
+        https://github.com/ABKQPO/MyCTMLib/releases/download/v1.0.3_28x/MyCTMLib-v1.0.3_28x.jar
+        https://github.com/ABKQPO/MyCTMLib/releases/download/v1.0.3_28x/MyCTMLib-v1.0.3_27x_hotfix.jar
+
+    steps:
+      - name: Checkout repository at release tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Prepare zip file
+        run: |
+          mkdir zip-root
+          for path in $INCLUDE_PATHS; do
+            cp -r --parents "$path" zip-root/
+          done
+          zip -r Modernity-GTNH-${{ github.event.release.tag_name }}.zip zip-root
+        shell: bash
+
+      - name: Download extra JAR files
+        run: |
+          mkdir jars
+          for url in $JAR_URLS; do
+            curl -L "$url" -o jars/$(basename $url)
+          done
+        shell: bash
+
+      - name: Upload files to release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          files: |
+            Modernity-GTNH-${{ github.event.release.tag_name }}.zip
+            jars/MyCTMLib-v1.0.3_28x.jar
+            jars/MyCTMLib-v1.0.3_27x_hotfix.jar
