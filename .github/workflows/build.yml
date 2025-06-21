@@ -34,7 +34,7 @@ jobs:
             cp -r --parents "$path" zip-root/
           done
           cd zip-root
-          zip -r ../Modernity-GTNH-${SHORT_SHA}.zip ./
+          zip -r ../Modernity-GTNH-${SHORT_SHA}-pre.zip ./
         shell: bash
 
       - name: Create GitHub Release
