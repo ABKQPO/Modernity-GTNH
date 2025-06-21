@@ -1,4 +1,4 @@
-name: Build & Release Commit Package
+name: Auto Commit Build
 
 on:
   push:
@@ -27,6 +27,16 @@ jobs:
         id: vars
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
+      - name: Get last two release tags from ABKQPO/MyCTMLib
+        id: get_tags
+        run: |
+          response=$(curl -s "https://api.github.com/repos/ABKQPO/MyCTMLib/releases?per_page=2")
+          tags=($(echo "$response" | jq -r '.[].tag_name'))
+          echo "TAG1=${tags[0]}" >> $GITHUB_ENV
+          echo "TAG2=${tags[1]}" >> $GITHUB_ENV
+          echo "Found tags: ${tags[0]}, ${tags[1]}"
+        shell: bash
+
       - name: Set up zip file
         run: |
           mkdir zip-root
@@ -37,10 +47,26 @@ jobs:
           zip -r ../Modernity-GTNH-${SHORT_SHA}-pre.zip ./
         shell: bash
 
+      - name: Download latest two MyCTMLib jars
+        run: |
+          mkdir jars
+          for TAG in "$TAG1" "$TAG2"; do
+            url="https://github.com/ABKQPO/MyCTMLib/releases/download/${TAG}/MyCTMLib-${TAG}.jar"
+            echo "Downloading $url"
+            curl -L "$url" -o jars/MyCTMLib-${TAG}.jar
+          done
+        shell: bash
+        env:
+          TAG1: ${{ env.TAG1 }}
+          TAG2: ${{ env.TAG2 }}
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           name: Commit ${{ env.SHORT_SHA }}
           tag_name: commit-${{ env.SHORT_SHA }}
           prerelease: true
-          files: Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
+          files: |
+            Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
+            jars/MyCTMLib-${{ env.TAG1 }}.jar
+            jars/MyCTMLib-${{ env.TAG2 }}.jar
