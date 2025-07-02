@@ -41,33 +41,26 @@ jobs:
           tags=($(echo "$response" | jq -r '.[].tag_name'))
           echo "TAG1=${tags[0]}" >> $GITHUB_ENV
           echo "TAG2=${tags[1]}" >> $GITHUB_ENV
-          echo "Found tags: ${tags[0]}, ${tags[1]}"
         shell: bash
 
       - name: Build all branches
         run: |
           for BRANCH in $TARGET_BRANCHES; do
-            echo "Building branch: $BRANCH"
             git checkout $BRANCH
-
             VAR_NAME="ZIP_NAME_${BRANCH//-/_}"
             ZIP_TEMPLATE="${!VAR_NAME}"
-
             ZIP_NAME="${ZIP_TEMPLATE//\{SHA\}/$SHORT_SHA}"
-
-            echo "Using zip name: $ZIP_NAME"
 
             rm -rf zip-root
             mkdir zip-root
             for path in $INCLUDE_PATHS; do
-              cp -r --parents "$path" zip-root/
+              if [ -e "$path" ]; then
+                cp -r --parents "$path" zip-root/
+              fi
             done
-
             cd zip-root
             zip -r "../$ZIP_NAME" ./
             cd ..
-
-            echo "Created $ZIP_NAME"
           done
         shell: bash
         env:
@@ -81,7 +74,6 @@ jobs:
           mkdir jars
           for TAG in "$TAG1" "$TAG2"; do
             url="https://github.com/ABKQPO/MyCTMLib/releases/download/${TAG}/MyCTMLib-${TAG}.jar"
-            echo "Downloading $url"
             curl -L "$url" -o jars/MyCTMLib-${TAG}.jar
           done
         shell: bash
