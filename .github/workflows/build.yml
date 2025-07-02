@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - no_mixed_color_gc_plate
 
 jobs:
   build-and-release:
@@ -27,6 +28,26 @@ jobs:
         id: vars
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
+      - name: Define branch-specific zip name
+        id: zipname
+        run: |
+          BRANCH="${GITHUB_REF##*/}"
+          echo "Branch is $BRANCH"
+          case "$BRANCH" in
+            main)
+              ZIP_NAME="Modernity-GTNH-${SHORT_SHA}-pre.zip"
+              ;;
+            no_mixed_color_gc_plate)
+              ZIP_NAME="Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip"
+              ;;
+            *)
+              ZIP_NAME="Modernity-GTNH-${BRANCH}-${SHORT_SHA}.zip"
+              ;;
+          esac
+
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
+        shell: bash
+
       - name: Get last two release tags from ABKQPO/MyCTMLib
         id: get_tags
         run: |
@@ -44,7 +65,7 @@ jobs:
             cp -r --parents "$path" zip-root/
           done
           cd zip-root
-          zip -r ../Modernity-GTNH-${SHORT_SHA}-pre.zip ./
+          zip -r "../${ZIP_NAME}" ./
         shell: bash
 
       - name: Download latest two MyCTMLib jars
@@ -67,6 +88,6 @@ jobs:
           tag_name: commit-${{ env.SHORT_SHA }}
           prerelease: true
           files: |
-            Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
+            ${{ env.ZIP_NAME }}
             jars/MyCTMLib-${{ env.TAG1 }}.jar
             jars/MyCTMLib-${{ env.TAG2 }}.jar
