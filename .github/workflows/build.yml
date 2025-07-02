@@ -20,33 +20,19 @@ jobs:
         pack.png
         README.md
 
+      TARGET_BRANCHES: "main no_mixed_color_gc_plate"
+      ZIP_NAME_main: "Modernity-GTNH-{SHA}-pre.zip"
+      ZIP_NAME_no_mixed_color_gc_plate: "Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip"
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Get short commit hash
         id: vars
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
-
-      - name: Define branch-specific zip name
-        id: zipname
-        run: |
-          BRANCH="${GITHUB_REF##*/}"
-          echo "Branch is $BRANCH"
-          case "$BRANCH" in
-            main)
-              ZIP_NAME="Modernity-GTNH-${SHORT_SHA}-pre.zip"
-              ;;
-            no_mixed_color_gc_plate)
-              ZIP_NAME="Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip"
-              ;;
-            *)
-              ZIP_NAME="Modernity-GTNH-${BRANCH}-${SHORT_SHA}.zip"
-              ;;
-          esac
-
-          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
-        shell: bash
 
       - name: Get last two release tags from ABKQPO/MyCTMLib
         id: get_tags
@@ -58,15 +44,37 @@ jobs:
           echo "Found tags: ${tags[0]}, ${tags[1]}"
         shell: bash
 
-      - name: Set up zip file
+      - name: Build all branches
         run: |
-          mkdir zip-root
-          for path in $INCLUDE_PATHS; do
-            cp -r --parents "$path" zip-root/
+          for BRANCH in $TARGET_BRANCHES; do
+            echo "Building branch: $BRANCH"
+            git checkout $BRANCH
+
+            VAR_NAME="ZIP_NAME_${BRANCH//-/_}"
+            ZIP_TEMPLATE="${!VAR_NAME}"
+
+            ZIP_NAME="${ZIP_TEMPLATE//\{SHA\}/$SHORT_SHA}"
+
+            echo "Using zip name: $ZIP_NAME"
+
+            rm -rf zip-root
+            mkdir zip-root
+            for path in $INCLUDE_PATHS; do
+              cp -r --parents "$path" zip-root/
+            done
+
+            cd zip-root
+            zip -r "../$ZIP_NAME" ./
+            cd ..
+
+            echo "Created $ZIP_NAME"
           done
-          cd zip-root
-          zip -r "../${ZIP_NAME}" ./
         shell: bash
+        env:
+          INCLUDE_PATHS: ${{ env.INCLUDE_PATHS }}
+          SHORT_SHA: ${{ env.SHORT_SHA }}
+          ZIP_NAME_main: ${{ env.ZIP_NAME_main }}
+          ZIP_NAME_no_mixed_color_gc_plate: ${{ env.ZIP_NAME_no_mixed_color_gc_plate }}
 
       - name: Download latest two MyCTMLib jars
         run: |
@@ -88,6 +96,7 @@ jobs:
           tag_name: commit-${{ env.SHORT_SHA }}
           prerelease: true
           files: |
-            ${{ env.ZIP_NAME }}
+            Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
+            Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip
             jars/MyCTMLib-${{ env.TAG1 }}.jar
             jars/MyCTMLib-${{ env.TAG2 }}.jar
