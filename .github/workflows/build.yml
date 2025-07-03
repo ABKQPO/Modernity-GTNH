@@ -28,7 +28,11 @@ jobs:
 
       EXTERNAL_REPOS: |
         OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
+        Just-Productive-Bees=https://github.com/DarkScorpyon/Just-Productive-Bees-
+        Just-Forestry-Bees=https://github.com/DarkScorpyon/Just-Forestry-Bees-
       EXTERNAL_ZIP_NAME_OutlinedOres_Modern: "Modernity-GTNH-OutlinedOres.zip"
+      EXTERNAL_ZIP_NAME_JustProductiveBees: "Modernity-GTNH-Just-Productive-Bees.zip"
+      EXTERNAL_ZIP_NAME_JustForestryBees: "Modernity-GTNH-Just-Forestry-Bees.zip"
 
     steps:
       - name: Checkout Code
@@ -107,6 +111,8 @@ jobs:
         env:
           INCLUDE_PATHS: ${{ env.INCLUDE_PATHS }}
           EXTERNAL_ZIP_NAME_OutlinedOres_Modern: ${{ env.EXTERNAL_ZIP_NAME_OutlinedOres_Modern }}
+          EXTERNAL_ZIP_NAME_JustProductiveBees: ${{ env.EXTERNAL_ZIP_NAME_JustProductiveBees }}
+          EXTERNAL_ZIP_NAME_JustForestryBees: ${{ env.EXTERNAL_ZIP_NAME_JustForestryBees }}
 
       - name: Download latest two MyCTMLib jars
         run: |
@@ -132,5 +138,7 @@ jobs:
             Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip
             Modernity-GTNH-GTNLResonaticCircuit.zip
             Modernity-GTNH-OutlinedOres.zip
+            Modernity-GTNH-Just-Productive-Bees.zip
+            Modernity-GTNH-Just-Forestry-Bees.zip
             jars/MyCTMLib-${{ env.TAG1 }}.jar
             jars/MyCTMLib-${{ env.TAG2 }}.jar
