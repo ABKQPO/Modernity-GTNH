@@ -125,7 +125,7 @@ jobs:
         with:
           name: Commit ${{ env.SHORT_SHA }}
           tag_name: commit-${{ env.SHORT_SHA }}
-          prerelease: true
+          prerelease: false
           make_latest: true
           files: |
             Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
