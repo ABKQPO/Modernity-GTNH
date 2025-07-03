@@ -94,12 +94,13 @@ jobs:
             for path in $INCLUDE_PATHS; do
               [ -z "$path" ] && continue
               if [ -e "$NAME/$path" ]; then
-                cp -r --parents "$NAME/$path" "$ZIP_DIR/"
+                mkdir -p "$(dirname "$ZIP_DIR/$path")"
+                cp -r "$NAME/$path" "$ZIP_DIR/$path"
               fi
             done
 
             cd "$ZIP_DIR"
-            zip -r "../../$ZIP_NAME" ./ || true
+            zip -r "../../$ZIP_NAME" ./
             cd ../..
           done <<< "$EXTERNAL_REPOS"
         shell: bash
@@ -124,7 +125,8 @@ jobs:
         with:
           name: Commit ${{ env.SHORT_SHA }}
           tag_name: commit-${{ env.SHORT_SHA }}
-          prerelease: true
+          prerelease: false
+          make_latest: true
           files: |
             Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
             Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip
