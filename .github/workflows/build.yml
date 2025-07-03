@@ -31,8 +31,8 @@ jobs:
         Just-Productive-Bees=https://github.com/DarkScorpyon/Just-Productive-Bees-
         Just-Forestry-Bees=https://github.com/DarkScorpyon/Just-Forestry-Bees-
       EXTERNAL_ZIP_NAME_OutlinedOres_Modern: "Modernity-GTNH-OutlinedOres.zip"
-      EXTERNAL_ZIP_NAME_JustProductiveBees: "Modernity-GTNH-Just-Productive-Bees.zip"
-      EXTERNAL_ZIP_NAME_JustForestryBees: "Modernity-GTNH-Just-Forestry-Bees.zip"
+      EXTERNAL_ZIP_NAME_Just_Productive_Bees: "Modernity-GTNH-Just-Productive-Bees.zip"
+      EXTERNAL_ZIP_NAME_Just_Forestry_Bees: "Modernity-GTNH-Just-Forestry-Bees.zip"
 
     steps:
       - name: Checkout Code
@@ -111,8 +111,8 @@ jobs:
         env:
           INCLUDE_PATHS: ${{ env.INCLUDE_PATHS }}
           EXTERNAL_ZIP_NAME_OutlinedOres_Modern: ${{ env.EXTERNAL_ZIP_NAME_OutlinedOres_Modern }}
-          EXTERNAL_ZIP_NAME_JustProductiveBees: ${{ env.EXTERNAL_ZIP_NAME_JustProductiveBees }}
-          EXTERNAL_ZIP_NAME_JustForestryBees: ${{ env.EXTERNAL_ZIP_NAME_JustForestryBees }}
+          EXTERNAL_ZIP_NAME_Just_Productive_Bees: ${{ env.EXTERNAL_ZIP_NAME_Just_Productive_Bees }}
+          EXTERNAL_ZIP_NAME_Just_Forestry_Bees: ${{ env.EXTERNAL_ZIP_NAME_Just_Forestry_Bees }}
 
       - name: Download latest two MyCTMLib jars
         run: |
