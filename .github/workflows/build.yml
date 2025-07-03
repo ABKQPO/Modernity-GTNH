@@ -80,6 +80,7 @@ jobs:
         run: |
           mkdir external-zips
           while IFS== read -r NAME URL; do
+            [ -z "$NAME" ] && continue
             SAFE_NAME="${NAME//-/_}"
             ZIP_VAR="EXTERNAL_ZIP_NAME_${SAFE_NAME}"
             ZIP_NAME="${!ZIP_VAR}"
@@ -98,7 +99,7 @@ jobs:
             done
 
             cd "$ZIP_DIR"
-            zip -r "../../$ZIP_NAME" ./
+            zip -r "../../$ZIP_NAME" ./ || true
             cd ../..
           done <<< "$EXTERNAL_REPOS"
         shell: bash
