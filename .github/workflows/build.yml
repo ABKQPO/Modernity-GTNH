@@ -91,6 +91,7 @@ jobs:
             mkdir -p "$ZIP_DIR"
 
             for path in $INCLUDE_PATHS; do
+              [ -z "$path" ] && continue
               if [ -e "$NAME/$path" ]; then
                 cp -r --parents "$NAME/$path" "$ZIP_DIR/"
               fi
