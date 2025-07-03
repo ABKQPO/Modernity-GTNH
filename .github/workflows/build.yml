@@ -26,6 +26,10 @@ jobs:
       ZIP_NAME_no_mixed_color_gc_plate: "Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip"
       ZIP_NAME_resonatic_circuit: "Modernity-GTNH-GTNLResonaticCircuit.zip"
 
+      EXTERNAL_REPOS: |
+        OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
+      EXTERNAL_ZIP_NAME_OutlinedOres_Modern: "Modernity-GTNH-OutlinedOres.zip"
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -72,6 +76,35 @@ jobs:
           ZIP_NAME_no_mixed_color_gc_plate: ${{ env.ZIP_NAME_no_mixed_color_gc_plate }}
           ZIP_NAME_resonatic_circuit: ${{ env.ZIP_NAME_resonatic_circuit }}
 
+      - name: Download and package external repositories
+        run: |
+          mkdir external-zips
+          while IFS== read -r NAME URL; do
+            SAFE_NAME="${NAME//-/_}"
+            ZIP_VAR="EXTERNAL_ZIP_NAME_${SAFE_NAME}"
+            ZIP_NAME="${!ZIP_VAR}"
+
+            echo "Cloning $URL as $NAME ..."
+            git clone --depth=1 "$URL" "$NAME"
+
+            ZIP_DIR="external-zips/${NAME}-zip-root"
+            mkdir -p "$ZIP_DIR"
+
+            for path in $INCLUDE_PATHS; do
+              if [ -e "$NAME/$path" ]; then
+                cp -r --parents "$NAME/$path" "$ZIP_DIR/"
+              fi
+            done
+
+            cd "$ZIP_DIR"
+            zip -r "../../$ZIP_NAME" ./
+            cd ../..
+          done <<< "$EXTERNAL_REPOS"
+        shell: bash
+        env:
+          INCLUDE_PATHS: ${{ env.INCLUDE_PATHS }}
+          EXTERNAL_ZIP_NAME_OutlinedOres_Modern: ${{ env.EXTERNAL_ZIP_NAME_OutlinedOres_Modern }}
+
       - name: Download latest two MyCTMLib jars
         run: |
           mkdir jars
@@ -94,5 +127,6 @@ jobs:
             Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
             Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip
             Modernity-GTNH-GTNLResonaticCircuit.zip
+            Modernity-GTNH-OutlinedOres.zip
             jars/MyCTMLib-${{ env.TAG1 }}.jar
             jars/MyCTMLib-${{ env.TAG2 }}.jar
