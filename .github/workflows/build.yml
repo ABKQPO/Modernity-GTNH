@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - no_mixed_color_gc_plate
+      - resonatic_circuit
 
 jobs:
   build-and-release:
@@ -23,6 +24,7 @@ jobs:
       TARGET_BRANCHES: "main no_mixed_color_gc_plate"
       ZIP_NAME_main: "Modernity-GTNH-{SHA}-pre.zip"
       ZIP_NAME_no_mixed_color_gc_plate: "Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip"
+      ZIP_NAME_resonatic_circuit: "Modernity-GTNH-GTNLResonaticCircuit.zip"
 
     steps:
       - name: Checkout Code
@@ -68,6 +70,7 @@ jobs:
           SHORT_SHA: ${{ env.SHORT_SHA }}
           ZIP_NAME_main: ${{ env.ZIP_NAME_main }}
           ZIP_NAME_no_mixed_color_gc_plate: ${{ env.ZIP_NAME_no_mixed_color_gc_plate }}
+          ZIP_NAME_resonatic_circuit: ${{ env.ZIP_NAME_resonatic_circuit }}
 
       - name: Download latest two MyCTMLib jars
         run: |
@@ -90,5 +93,6 @@ jobs:
           files: |
             Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
             Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip
+            Modernity-GTNH-GTNLResonaticCircuit.zip
             jars/MyCTMLib-${{ env.TAG1 }}.jar
             jars/MyCTMLib-${{ env.TAG2 }}.jar
