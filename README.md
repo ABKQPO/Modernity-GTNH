@@ -100,7 +100,7 @@ GTOCore main page: https://github.com/GregTech-Odyssey/GTOCore
 
 Thanks to Sampsa for letting us use Vajra/Matter Manipulator from Futura Tools
 
-https://github.com/S4mpsa/FuturaTools
+Futura Tools main page: https://github.com/S4mpsa/FuturaTools
 
 
 Thanks to Auynonymous for letting us use Solenoid Superconductor Coils
