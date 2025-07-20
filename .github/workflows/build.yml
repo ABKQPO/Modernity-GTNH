@@ -142,3 +142,4 @@ jobs:
             Modernity-GTNH-Just-Forestry-Bees.zip
             jars/MyCTMLib-${{ env.TAG1 }}.jar
             jars/MyCTMLib-${{ env.TAG2 }}.jar
+            MyCTMLib.cfg
