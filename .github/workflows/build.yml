@@ -53,6 +53,27 @@ jobs:
           echo "TAG2=${tags[1]}" >> $GITHUB_ENV
         shell: bash
 
+      - name: Install Wine
+        run: |
+          sudo apt update
+          sudo apt install -y wine
+
+      - name: Compress PNGs using optipng.exe
+        run: |
+          echo "Compressing PNGs using optipng.exe..."
+          for path in $INCLUDE_PATHS; do
+            if [ -d "$path" ]; then
+              find "$path" -type f -name "*.png" -print0 | while IFS= read -r -d '' file; do
+                echo "Compressing: $file"
+                wine ./optipng.exe -o7 -zm1-9 "$file"
+              done
+            elif [ -f "$path" ] && [[ "$path" == *.png ]]; then
+              echo "Compressing: $path"
+              wine ./optipng.exe -o7 -zm1-9 "$path"
+            fi
+          done
+        shell: bash
+
       - name: Build all branches
         run: |
           for BRANCH in $TARGET_BRANCHES; do
