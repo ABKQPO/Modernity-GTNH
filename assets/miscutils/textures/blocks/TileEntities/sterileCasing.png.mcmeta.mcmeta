@@ -1,0 +1,5 @@
+{
+    "myctmlib": {
+        "connection": "miscutils:TileEntities/sterileCasing_ctm"
+    }
+}
