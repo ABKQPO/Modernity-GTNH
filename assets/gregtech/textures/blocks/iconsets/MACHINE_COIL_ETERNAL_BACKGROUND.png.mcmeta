@@ -1,1 +1,6 @@
-{"animation": {"frametime": 3}}
+{
+    "animation": {"frametime": 3},
+    "myctmlib": {
+        "connection": "gregtech:iconsets/MACHINE_COIL_ETERNAL_BACKGROUND_ctm"
+    }
+}
