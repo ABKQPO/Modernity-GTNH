@@ -19,6 +19,19 @@ jobs:
         pack.png
         README.md
 
+      TARGET_BRANCHES: "main no_mixed_color_gc_plate resonatic_circuit"
+      ZIP_NAME_main: "Modernity-GTNH-{TAG}.zip"
+      ZIP_NAME_no_mixed_color_gc_plate: "Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip"
+      ZIP_NAME_resonatic_circuit: "Modernity-GTNH-GTNLResonaticCircuit.zip"
+
+      EXTERNAL_REPOS: |
+        OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
+        Just-Productive-Bees=https://github.com/DarkScorpyon/Just-Productive-Bees-
+        Just-Forestry-Bees=https://github.com/DarkScorpyon/Just-Forestry-Bees-
+      EXTERNAL_ZIP_NAME_OutlinedOres_Modern: "Modernity-GTNH-OutlinedOres.zip"
+      EXTERNAL_ZIP_NAME_Just_Productive_Bees: "Modernity-GTNH-Just-Productive-Bees.zip"
+      EXTERNAL_ZIP_NAME_Just_Forestry_Bees: "Modernity-GTNH-Just-Forestry-Bees.zip"
+
     steps:
       - name: Checkout repository at release tag
         uses: actions/checkout@v4
@@ -32,17 +45,71 @@ jobs:
           tags=($(echo "$response" | jq -r '.[].tag_name'))
           echo "TAG1=${tags[0]}" >> $GITHUB_ENV
           echo "TAG2=${tags[1]}" >> $GITHUB_ENV
-          echo "Found tags: ${tags[0]}, ${tags[1]}"
         shell: bash
 
-      - name: Prepare zip file
+      - name: Build all branches
         run: |
-          mkdir zip-root
-          for path in $INCLUDE_PATHS; do
-            cp -r --parents "$path" zip-root/
+          TAG=${GITHUB_EVENT_RELEASE_TAG_NAME}
+          for BRANCH in $TARGET_BRANCHES; do
+            git checkout $BRANCH
+            VAR_NAME="ZIP_NAME_${BRANCH//-/_}"
+            ZIP_TEMPLATE="${!VAR_NAME}"
+            ZIP_NAME="$ZIP_TEMPLATE"
+            if [ "$BRANCH" = "main" ]; then
+              ZIP_NAME="${ZIP_NAME//\{TAG\}/$TAG}"
+            fi
+
+            echo "Building ZIP for branch $BRANCH: $ZIP_NAME"
+
+            rm -rf zip-root
+            mkdir zip-root
+            for path in $INCLUDE_PATHS; do
+              if [ -e "$path" ]; then
+                cp -r --parents "$path" zip-root/
+              fi
+            done
+            cd zip-root
+            zip -r "../$ZIP_NAME" ./
+            cd ..
           done
-          zip -r Modernity-GTNH-${{ github.event.release.tag_name }}.zip zip-root
         shell: bash
+        env:
+          INCLUDE_PATHS: ${{ env.INCLUDE_PATHS }}
+          GITHUB_EVENT_RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
+
+      - name: Download and package external repositories
+        run: |
+          mkdir external-zips
+          while IFS== read -r NAME URL; do
+            [ -z "$NAME" ] && continue
+            SAFE_NAME="${NAME//-/_}"
+            ZIP_VAR="EXTERNAL_ZIP_NAME_${SAFE_NAME}"
+            ZIP_NAME="${!ZIP_VAR}"
+
+            echo "Cloning $URL as $NAME ..."
+            git clone --depth=1 "$URL" "$NAME"
+
+            ZIP_DIR="external-zips/${NAME}-zip-root"
+            mkdir -p "$ZIP_DIR"
+
+            for path in $INCLUDE_PATHS; do
+              [ -z "$path" ] && continue
+              if [ -e "$NAME/$path" ]; then
+                mkdir -p "$(dirname "$ZIP_DIR/$path")"
+                cp -r "$NAME/$path" "$ZIP_DIR/$path"
+              fi
+            done
+
+            cd "$ZIP_DIR"
+            zip -r "../../$ZIP_NAME" ./
+            cd ../..
+          done <<< "$EXTERNAL_REPOS"
+        shell: bash
+        env:
+          INCLUDE_PATHS: ${{ env.INCLUDE_PATHS }}
+          EXTERNAL_ZIP_NAME_OutlinedOres_Modern: ${{ env.EXTERNAL_ZIP_NAME_OutlinedOres_Modern }}
+          EXTERNAL_ZIP_NAME_Just_Productive_Bees: ${{ env.EXTERNAL_ZIP_NAME_Just_Productive_Bees }}
+          EXTERNAL_ZIP_NAME_Just_Forestry_Bees: ${{ env.EXTERNAL_ZIP_NAME_Just_Forestry_Bees }}
 
       - name: Download latest two MyCTMLib jars
         run: |
@@ -63,5 +130,10 @@ jobs:
           tag_name: ${{ github.event.release.tag_name }}
           files: |
             Modernity-GTNH-${{ github.event.release.tag_name }}.zip
+            Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip
+            Modernity-GTNH-GTNLResonaticCircuit.zip
+            Modernity-GTNH-OutlinedOres.zip
+            Modernity-GTNH-Just-Productive-Bees.zip
+            Modernity-GTNH-Just-Forestry-Bees.zip
             jars/MyCTMLib-${{ env.TAG1 }}.jar
             jars/MyCTMLib-${{ env.TAG2 }}.jar
