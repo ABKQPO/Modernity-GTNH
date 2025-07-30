@@ -32,7 +32,12 @@ WIP
 
 ## CTM Textures
 
-If you want to use connected textures, please download this mod here [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and place the `MyCTMLib.cfg` file into the `config folder`
+~~If you want to use connected textures, please download this mod here [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and place the `MyCTMLib.cfg` file into the `config folder`~~
+
+**Starting from version 1.1.0, there is no need to place the configuration file anymore.  
+You only need to install [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and add the resource pack to use connected textures.**  
+**Older versions still require adding the configuration file!**
+
 > Note: Please download the mod version that matches your modpack
 
 >
@@ -44,7 +49,7 @@ If you want to use connected textures, please download this mod here [`MyCTMLib`
 >
 >https://github.com/Soammer/MyCTMLib
 >
->  ~~### There is a serious Z-Fighting issue!~~
+> ### ~~There is a serious Z-Fighting issue!~~
 >
 > This issue has been fixed, but there are still some minor problems remaining
 
