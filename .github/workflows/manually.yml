@@ -28,36 +28,42 @@ jobs:
         OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
         Just-Productive-Bees=https://github.com/DarkScorpyon/Just-Productive-Bees-
         Just-Forestry-Bees=https://github.com/DarkScorpyon/Just-Forestry-Bees-
+
       EXTERNAL_ZIP_NAME_OutlinedOres_Modern: "Modernity-GTNH-OutlinedOres.zip"
       EXTERNAL_ZIP_NAME_Just_Productive_Bees: "Modernity-GTNH-Just-Productive-Bees.zip"
       EXTERNAL_ZIP_NAME_Just_Forestry_Bees: "Modernity-GTNH-Just-Forestry-Bees.zip"
 
     steps:
-      - name: Checkout repository at release tag
+      - name: Checkout full repository
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.release.tag_name }}
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Get short commit hash
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Get last two release tags from ABKQPO/MyCTMLib
-        id: get_tags
         run: |
           response=$(curl -s "https://api.github.com/repos/ABKQPO/MyCTMLib/releases?per_page=2")
           tags=($(echo "$response" | jq -r '.[].tag_name'))
           echo "TAG1=${tags[0]}" >> $GITHUB_ENV
           echo "TAG2=${tags[1]}" >> $GITHUB_ENV
-        shell: bash
 
       - name: Build all branches
         run: |
-          TAG=${GITHUB_EVENT_RELEASE_TAG_NAME}
+          TAG=${{ github.event.release.tag_name }}
           for BRANCH in $TARGET_BRANCHES; do
+            echo "Checking out branch: $BRANCH"
             git checkout $BRANCH
+
             VAR_NAME="ZIP_NAME_${BRANCH//-/_}"
             ZIP_TEMPLATE="${!VAR_NAME}"
             ZIP_NAME="$ZIP_TEMPLATE"
-            if [ "$BRANCH" = "main" ]; then
-              ZIP_NAME="${ZIP_NAME//\{TAG\}/$TAG}"
-            fi
+
+            ZIP_NAME="${ZIP_NAME//\{TAG\}/$TAG}"
+            ZIP_NAME="${ZIP_NAME//\{SHA\}/${GITHUB_SHA::7}}"
 
             echo "Building ZIP for branch $BRANCH: $ZIP_NAME"
 
@@ -68,6 +74,7 @@ jobs:
                 cp -r --parents "$path" zip-root/
               fi
             done
+
             cd zip-root
             zip -r "../$ZIP_NAME" ./
             cd ..
@@ -75,7 +82,9 @@ jobs:
         shell: bash
         env:
           INCLUDE_PATHS: ${{ env.INCLUDE_PATHS }}
-          GITHUB_EVENT_RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
+          ZIP_NAME_main: ${{ env.ZIP_NAME_main }}
+          ZIP_NAME_no_mixed_color_gc_plate: ${{ env.ZIP_NAME_no_mixed_color_gc_plate }}
+          ZIP_NAME_resonatic_circuit: ${{ env.ZIP_NAME_resonatic_circuit }}
 
       - name: Download and package external repositories
         run: |
@@ -101,7 +110,7 @@ jobs:
             done
 
             cd "$ZIP_DIR"
-            zip -r "../../$ZIP_NAME" ./
+            zip -r "../../$ZIP_NAME" ./ 
             cd ../..
           done <<< "$EXTERNAL_REPOS"
         shell: bash
