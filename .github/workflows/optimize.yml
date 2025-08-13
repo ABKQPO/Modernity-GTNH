@@ -28,7 +28,7 @@ jobs:
       - name: Install GitHub CLI
         run: sudo apt-get install -y gh
 
-      - name: Optimize PNG files
+      - name: Prepare diff commits
         run: |
           EVENT_NAME="${{ github.event_name }}"
           if [ "$EVENT_NAME" = "pull_request" ]; then
@@ -39,6 +39,15 @@ jobs:
             HEAD_SHA="${{ github.sha }}"
           fi
 
+          # Ensure commits are fetched (avoid shallow clone issues)
+          git fetch origin "$BASE_SHA" --depth=1 || true
+          git fetch origin "$HEAD_SHA" --depth=1 || true
+
+          echo "BASE_SHA=$BASE_SHA" >> $GITHUB_ENV
+          echo "HEAD_SHA=$HEAD_SHA" >> $GITHUB_ENV
+
+      - name: Optimize PNG files
+        run: |
           CHANGED_PNGS=$(git diff --diff-filter=AMR --name-only "$BASE_SHA" "$HEAD_SHA" -- '*.png' || true)
 
           if [ -z "$CHANGED_PNGS" ]; then
