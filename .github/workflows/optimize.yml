@@ -30,11 +30,18 @@ jobs:
 
       - name: Optimize PNG files
         run: |
-          CHANGED_PNGS=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*.png')
+          EVENT_NAME="${{ github.event_name }}"
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            CHANGED_PNGS=$(git diff --name-only "origin/${{ github.base_ref }}" -- '*.png')
+          else
+            CHANGED_PNGS=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*.png')
+          fi
+
           if [ -z "$CHANGED_PNGS" ]; then
             echo "No PNG files changed."
             exit 0
           fi
+
           echo "Optimizing PNGs..."
           for file in $CHANGED_PNGS; do
             if [ -f "$file" ]; then
@@ -64,24 +71,19 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           set -e
-
           gh auth login --with-token <<< "$GH_PAT"
 
           EVENT_NAME="${{ github.event_name }}"
           if [ "$EVENT_NAME" = "pull_request" ]; then
             TARGET_LABEL="PR #${{ github.event.pull_request.number }}"
             BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+            PNG_LIST=$(git diff --name-only "origin/$BASE_BRANCH" -- '*.png' || true)
           else
             TARGET_LABEL="Commit ${{ github.sha }}"
             BASE_BRANCH="${{ github.ref_name }}"
+            PNG_LIST=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*.png' || true)
           fi
 
-          echo "Base branch: $BASE_BRANCH"
-          echo "Target label: $TARGET_LABEL"
-
-          git fetch origin "$BASE_BRANCH"
-
-          PNG_LIST=$(git diff --name-only "origin/$BASE_BRANCH" -- '*.png' || true)
           FILE_COUNT=$(echo "$PNG_LIST" | grep -c ".png$" || true)
           FILE_COUNT=${FILE_COUNT:-0}
 
