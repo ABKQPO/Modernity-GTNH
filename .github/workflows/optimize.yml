@@ -3,8 +3,6 @@ name: Optimize PNG with Oxipng
 on:
   push:
     branches: ["**"]
-  pull_request:
-    branches: ["**"]
 
 permissions:
   contents: write
@@ -128,4 +126,4 @@ jobs:
             --base "$BASE_BRANCH" \
             --head "${{ env.branch_name }}" \
             --title "Optimize PNG images for $TARGET_LABEL" \
-            --body "**Optimized PNG images for $TARGET_LABEL**\n\n_This PR includes all files from branch `${{ env.branch_name }}`_"
+            --body "**Optimized PNG images for $TARGET_LABEL**"
