@@ -42,6 +42,15 @@ jobs:
             fi
           fi
 
+      - name: Skip if latest commit is an Oxipng optimization
+        run: |
+          LAST_COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Last commit message: $LAST_COMMIT_MSG"
+          if [[ "$LAST_COMMIT_MSG" == *oxipng-optimization* ]]; then
+            echo "Latest commit is an oxipng-optimization commit, skipping workflow."
+            exit 0
+          fi
+
       - name: Prepare diff commits
         run: |
           EVENT_NAME="${{ github.event_name }}"
