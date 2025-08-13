@@ -28,6 +28,22 @@ jobs:
       - name: Install GitHub CLI
         run: sudo apt-get install -y gh
 
+      - name: Check if PR is an Optimize PNG PR
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          set -e
+          export LANG=C.UTF-8
+          gh auth login --with-token <<< "$GH_PAT"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            PR_TITLE=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
+            echo "Current PR title: $PR_TITLE"
+            if [[ "$PR_TITLE" == Optimize\ PNG* ]]; then
+              echo "Skipping workflow for Optimize PNG PR."
+              exit 0
+            fi
+          fi
+
       - name: Prepare diff commits
         run: |
           EVENT_NAME="${{ github.event_name }}"
@@ -47,6 +63,7 @@ jobs:
 
       - name: Optimize PNG files
         run: |
+          export LANG=C.UTF-8
           echo "Base SHA: $BASE_SHA"
           echo "Head SHA: $HEAD_SHA"
 
@@ -91,6 +108,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           set -e
+          export LANG=C.UTF-8
           gh auth login --with-token <<< "$GH_PAT"
 
           EVENT_NAME="${{ github.event_name }}"
@@ -106,8 +124,8 @@ jobs:
           git checkout "${{ env.branch_name }}" || exit 1
           git push origin "${{ env.branch_name }}" || true
 
-          FILE_LIST=$(git diff --name-only "origin/$BASE_BRANCH"...HEAD || true)
-          FILE_COUNT=$(echo "$FILE_LIST" | wc -l || true)
+          FILE_LIST=$(git diff --name-only "origin/$BASE_BRANCH"...HEAD -- '*.png' || true)
+          FILE_COUNT=$(echo "$FILE_LIST" | grep -c ".png$" || true)
           FILE_COUNT=${FILE_COUNT:-0}
 
           if [ "$FILE_COUNT" -eq 0 ]; then
