@@ -32,10 +32,14 @@ jobs:
         run: |
           EVENT_NAME="${{ github.event_name }}"
           if [ "$EVENT_NAME" = "pull_request" ]; then
-            CHANGED_PNGS=$(git diff --name-only "origin/${{ github.base_ref }}" -- '*.png')
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
           else
-            CHANGED_PNGS=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*.png')
+            BASE_SHA="${{ github.event.before }}"
+            HEAD_SHA="${{ github.sha }}"
           fi
+
+          CHANGED_PNGS=$(git diff --diff-filter=AM --name-only "$BASE_SHA" "$HEAD_SHA" -- '*.png' || true)
 
           if [ -z "$CHANGED_PNGS" ]; then
             echo "No PNG files changed."
@@ -77,11 +81,11 @@ jobs:
           if [ "$EVENT_NAME" = "pull_request" ]; then
             TARGET_LABEL="PR #${{ github.event.pull_request.number }}"
             BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
-            PNG_LIST=$(git diff --name-only "origin/$BASE_BRANCH" -- '*.png' || true)
+            PNG_LIST=$(git diff --diff-filter=AM --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" -- '*.png' || true)
           else
             TARGET_LABEL="Commit ${{ github.sha }}"
             BASE_BRANCH="${{ github.ref_name }}"
-            PNG_LIST=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*.png' || true)
+            PNG_LIST=$(git diff --diff-filter=AM --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*.png' || true)
           fi
 
           FILE_COUNT=$(echo "$PNG_LIST" | grep -c ".png$" || true)
