@@ -49,19 +49,13 @@ jobs:
         run: |
           echo "Base SHA: $BASE_SHA"
           echo "Head SHA: $HEAD_SHA"
-          echo "Git log (last 5 commits):"
-          git log --oneline -5
 
-          echo "Changed PNG files between $BASE_SHA and $HEAD_SHA:"
           git diff --diff-filter=AMR --name-only -z "$BASE_SHA" "$HEAD_SHA" -- '*.png' > changed_pngs.txt || true
 
-          if [ "$(wc -c < changed_pngs.txt)" -eq 0 ]; then
+          if [ ! -s changed_pngs.txt ]; then
             echo "No PNG files changed."
             exit 0
           fi
-
-          echo "Detected PNG changes:"
-          tr '\0' '\n' < changed_pngs.txt
 
           echo "Optimizing PNGs..."
           while IFS= read -r -d '' file; do
@@ -80,10 +74,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          xargs -0 git add < changed_pngs.txt
+          git add -A
 
           if git diff --cached --quiet; then
-            echo "No PNG optimization changes found."
+            echo "No changes found."
             exit 0
           fi
 
@@ -108,12 +102,12 @@ jobs:
             BASE_BRANCH="${{ github.ref_name }}"
           fi
 
-          PNG_LIST=$(git diff --cached --name-only -- '*.png' || true)
-          FILE_COUNT=$(echo "$PNG_LIST" | grep -c ".png$" || true)
+          FILE_LIST=$(git diff --name-only "origin/$BASE_BRANCH"...HEAD || true)
+          FILE_COUNT=$(echo "$FILE_LIST" | wc -l || true)
           FILE_COUNT=${FILE_COUNT:-0}
 
           if [ "$FILE_COUNT" -eq 0 ]; then
-            echo "No PNG files to commit, skipping PR creation."
+            echo "No files to include in PR, skipping."
             exit 0
           fi
 
@@ -121,4 +115,4 @@ jobs:
             --base "$BASE_BRANCH" \
             --head "$branch_name" \
             --title "Optimize PNG images for $TARGET_LABEL" \
-            --body "**Optimized PNG images for $TARGET_LABEL**\n\n**Total files optimized:** $FILE_COUNT\n\n**Files:**\n\`\`\`\n$PNG_LIST\n\`\`\`"
+            --body "**Optimized PNG images for $TARGET_LABEL**\n\n**Total files in PR:** $FILE_COUNT\n\n**Files:**\n\`\`\`\n$FILE_LIST\n\`\`\`"
