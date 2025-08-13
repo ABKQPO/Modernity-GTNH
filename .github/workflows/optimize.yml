@@ -89,12 +89,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          if [ ! -s changed_pngs.txt ]; then
+            echo "No PNG files to optimize, skipping."
+            exit 0
+          fi
+
           git add -A
           git restore --staged changed_pngs.txt 2>/dev/null || true
           rm -f changed_pngs.txt
 
           if git diff --cached --quiet; then
-            echo "No changes found."
+            echo "No changes found after optimization."
             exit 0
           fi
 
