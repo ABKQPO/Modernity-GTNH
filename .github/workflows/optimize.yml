@@ -124,17 +124,8 @@ jobs:
           git checkout "${{ env.branch_name }}" || exit 1
           git push origin "${{ env.branch_name }}" || true
 
-          FILE_LIST=$(git diff --name-only "origin/$BASE_BRANCH"...HEAD -- '*.png' || true)
-          FILE_COUNT=$(echo "$FILE_LIST" | grep -c ".png$" || true)
-          FILE_COUNT=${FILE_COUNT:-0}
-
-          if [ "$FILE_COUNT" -eq 0 ]; then
-            echo "No files to include in PR, skipping."
-            exit 0
-          fi
-
           gh pr create \
             --base "$BASE_BRANCH" \
             --head "${{ env.branch_name }}" \
             --title "Optimize PNG images for $TARGET_LABEL" \
-            --body "**Optimized PNG images for $TARGET_LABEL**\n\n**Total files in PR:** $FILE_COUNT\n\n**Files:**\n\`\`\`\n$FILE_LIST\n\`\`\`"
+            --body "**Optimized PNG images for $TARGET_LABEL**\n\n_This PR includes all files from branch `${{ env.branch_name }}`_"
