@@ -39,7 +39,6 @@ jobs:
             HEAD_SHA="${{ github.sha }}"
           fi
 
-          # Ensure commits are fetched (avoid shallow clone issues)
           git fetch origin "$BASE_SHA" --depth=1 || true
           git fetch origin "$HEAD_SHA" --depth=1 || true
 
@@ -48,7 +47,14 @@ jobs:
 
       - name: Optimize PNG files
         run: |
+          echo "Base SHA: $BASE_SHA"
+          echo "Head SHA: $HEAD_SHA"
+          echo "Git log (last 5 commits):"
+          git log --oneline -5
+
+          echo "Changed PNG files between $BASE_SHA and $HEAD_SHA:"
           CHANGED_PNGS=$(git diff --diff-filter=AMR --name-only "$BASE_SHA" "$HEAD_SHA" -- '*.png' || true)
+          echo "$CHANGED_PNGS"
 
           if [ -z "$CHANGED_PNGS" ]; then
             echo "No PNG files changed."
@@ -58,22 +64,26 @@ jobs:
           echo "Optimizing PNGs..."
           for file in $CHANGED_PNGS; do
             if [ -f "$file" ]; then
+              echo "Optimizing: $file"
               oxipng -o 6 --alpha "$file"
+            else
+              echo "File not found: $file"
             fi
           done
 
       - name: Commit changes to new branch
         run: |
-          if git diff --quiet; then
-            echo "No optimization changes found."
-            exit 0
-          fi
-
           BRANCH_NAME="oxipng-optimization-${{ github.run_id }}"
           git checkout -b "$BRANCH_NAME"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add '*.png'
+
+          if git diff --cached --quiet; then
+            echo "No PNG optimization changes found."
+            exit 0
+          fi
+
           git commit -m "Optimize PNG images with oxipng"
           git push origin "$BRANCH_NAME"
 
@@ -90,18 +100,18 @@ jobs:
           if [ "$EVENT_NAME" = "pull_request" ]; then
             TARGET_LABEL="PR #${{ github.event.pull_request.number }}"
             BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
-            PNG_LIST=$(git diff --diff-filter=AMR --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" -- '*.png' || true)
+            PNG_LIST=$(git diff --cached --name-only -- '*.png' || true)
           else
             TARGET_LABEL="Commit ${{ github.sha }}"
             BASE_BRANCH="${{ github.ref_name }}"
-            PNG_LIST=$(git diff --diff-filter=AMR --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*.png' || true)
+            PNG_LIST=$(git diff --cached --name-only -- '*.png' || true)
           fi
 
           FILE_COUNT=$(echo "$PNG_LIST" | grep -c ".png$" || true)
           FILE_COUNT=${FILE_COUNT:-0}
 
           if [ "$FILE_COUNT" -eq 0 ]; then
-            echo "No PNG files changed, skipping PR creation."
+            echo "No PNG files to commit, skipping PR creation."
             exit 0
           fi
 
