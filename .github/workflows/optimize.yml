@@ -102,6 +102,10 @@ jobs:
             BASE_BRANCH="${{ github.ref_name }}"
           fi
 
+          git fetch origin
+          git checkout "${{ env.branch_name }}" || exit 1
+          git push origin "${{ env.branch_name }}" || true
+
           FILE_LIST=$(git diff --name-only "origin/$BASE_BRANCH"...HEAD || true)
           FILE_COUNT=$(echo "$FILE_LIST" | wc -l || true)
           FILE_COUNT=${FILE_COUNT:-0}
@@ -113,6 +117,6 @@ jobs:
 
           gh pr create \
             --base "$BASE_BRANCH" \
-            --head "$branch_name" \
+            --head "${{ env.branch_name }}" \
             --title "Optimize PNG images for $TARGET_LABEL" \
             --body "**Optimized PNG images for $TARGET_LABEL**\n\n**Total files in PR:** $FILE_COUNT\n\n**Files:**\n\`\`\`\n$FILE_LIST\n\`\`\`"
