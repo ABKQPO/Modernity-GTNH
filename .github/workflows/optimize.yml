@@ -30,7 +30,7 @@ jobs:
 
       - name: Optimize PNG files
         run: |
-          CHANGED_PNGS=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- '*.png')
+          CHANGED_PNGS=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*.png')
           if [ -z "$CHANGED_PNGS" ]; then
             echo "No PNG files changed."
             exit 0
@@ -61,9 +61,11 @@ jobs:
 
       - name: Create Pull Request
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           set -e
+
+          gh auth login --with-token <<< "$GH_PAT"
 
           EVENT_NAME="${{ github.event_name }}"
           if [ "$EVENT_NAME" = "pull_request" ]; then
@@ -80,7 +82,8 @@ jobs:
           git fetch origin "$BASE_BRANCH"
 
           PNG_LIST=$(git diff --name-only "origin/$BASE_BRANCH" -- '*.png' || true)
-          FILE_COUNT=$(echo "$PNG_LIST" | grep -c ".png$" || echo 0)
+          FILE_COUNT=$(echo "$PNG_LIST" | grep -c ".png$" || true)
+          FILE_COUNT=${FILE_COUNT:-0}
 
           if [ "$FILE_COUNT" -eq 0 ]; then
             echo "No PNG files changed, skipping PR creation."
