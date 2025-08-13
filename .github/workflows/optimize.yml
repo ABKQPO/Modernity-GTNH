@@ -53,23 +53,24 @@ jobs:
           git log --oneline -5
 
           echo "Changed PNG files between $BASE_SHA and $HEAD_SHA:"
-          CHANGED_PNGS=$(git diff --diff-filter=AMR --name-only "$BASE_SHA" "$HEAD_SHA" -- '*.png' || true)
-          echo "$CHANGED_PNGS"
+          git diff --diff-filter=AMR --name-only -z "$BASE_SHA" "$HEAD_SHA" -- '*.png' || true > changed_pngs.txt
 
-          if [ -z "$CHANGED_PNGS" ]; then
+          if [ ! -s changed_pngs.txt ]; then
             echo "No PNG files changed."
             exit 0
           fi
 
+          tr '\0' '\n' < changed_pngs.txt
+
           echo "Optimizing PNGs..."
-          for file in $CHANGED_PNGS; do
+          while IFS= read -r -d '' file; do
             if [ -f "$file" ]; then
               echo "Optimizing: $file"
               oxipng -o 6 --alpha "$file"
             else
               echo "File not found: $file"
             fi
-          done
+          done < changed_pngs.txt
 
       - name: Commit changes to new branch
         run: |
