@@ -60,10 +60,13 @@ jobs:
           echo "branch_name=$BRANCH_NAME" >> $GITHUB_ENV
 
       - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+          set -e
 
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
+          EVENT_NAME="${{ github.event_name }}"
+          if [ "$EVENT_NAME" = "pull_request" ]; then
             TARGET_LABEL="PR #${{ github.event.pull_request.number }}"
             BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
           else
@@ -71,8 +74,18 @@ jobs:
             BASE_BRANCH="${{ github.ref_name }}"
           fi
 
-          PNG_LIST=$(git diff --name-only origin/"$BASE_BRANCH" -- '*.png')
-          FILE_COUNT=$(echo "$PNG_LIST" | grep -c ".png$")
+          echo "Base branch: $BASE_BRANCH"
+          echo "Target label: $TARGET_LABEL"
+
+          git fetch origin "$BASE_BRANCH"
+
+          PNG_LIST=$(git diff --name-only "origin/$BASE_BRANCH" -- '*.png' || true)
+          FILE_COUNT=$(echo "$PNG_LIST" | grep -c ".png$" || echo 0)
+
+          if [ "$FILE_COUNT" -eq 0 ]; then
+            echo "No PNG files changed, skipping PR creation."
+            exit 0
+          fi
 
           gh pr create \
             --base "$BASE_BRANCH" \
