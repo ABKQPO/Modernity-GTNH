@@ -53,13 +53,14 @@ jobs:
           git log --oneline -5
 
           echo "Changed PNG files between $BASE_SHA and $HEAD_SHA:"
-          git diff --diff-filter=AMR --name-only -z "$BASE_SHA" "$HEAD_SHA" -- '*.png' || true > changed_pngs.txt
+          git diff --diff-filter=AMR --name-only -z "$BASE_SHA" "$HEAD_SHA" -- '*.png' > changed_pngs.txt || true
 
-          if [ ! -s changed_pngs.txt ]; then
+          if [ "$(wc -c < changed_pngs.txt)" -eq 0 ]; then
             echo "No PNG files changed."
             exit 0
           fi
 
+          echo "Detected PNG changes:"
           tr '\0' '\n' < changed_pngs.txt
 
           echo "Optimizing PNGs..."
@@ -78,7 +79,8 @@ jobs:
           git checkout -b "$BRANCH_NAME"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add '*.png'
+
+          xargs -0 git add < changed_pngs.txt
 
           if git diff --cached --quiet; then
             echo "No PNG optimization changes found."
@@ -101,13 +103,12 @@ jobs:
           if [ "$EVENT_NAME" = "pull_request" ]; then
             TARGET_LABEL="PR #${{ github.event.pull_request.number }}"
             BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
-            PNG_LIST=$(git diff --cached --name-only -- '*.png' || true)
           else
             TARGET_LABEL="Commit ${{ github.sha }}"
             BASE_BRANCH="${{ github.ref_name }}"
-            PNG_LIST=$(git diff --cached --name-only -- '*.png' || true)
           fi
 
+          PNG_LIST=$(git diff --cached --name-only -- '*.png' || true)
           FILE_COUNT=$(echo "$PNG_LIST" | grep -c ".png$" || true)
           FILE_COUNT=${FILE_COUNT:-0}
 
