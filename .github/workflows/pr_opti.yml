@@ -1,4 +1,4 @@
-name: Check Optimize PNG files
+name: Optimize PNG files
 
 on:
   pull_request:
@@ -6,12 +6,7 @@ on:
   push:
     branches: [ "**" ]
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
-  check-images:
-    name: PNG compression check
-    uses: ./.github/workflows/optimize.yml
+  build-and-test:
+    uses: GTNewHorizons/GTNH-Actions-Workflows/.github/workflows/optimize-images.yml@image_compression
     secrets: inherit
