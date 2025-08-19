@@ -58,7 +58,12 @@ jobs:
           if [ "${{ github.event_name }}" == "pull_request" ]; then
             CHANGED_FILES=$(git diff --diff-filter=AMR --name-only -z "$BASE_SHA" "$HEAD_SHA" -- '*.png' || true)
           else
-            CHANGED_FILES=$(git diff --diff-filter=AMR --name-only -z HEAD~1 HEAD -- '*.png' || true)
+            MERGE_BASE=$(git merge-base HEAD origin/main || true)
+            if [ -n "$MERGE_BASE" ]; then
+              CHANGED_FILES=$(git diff --diff-filter=AMR --name-only -z $MERGE_BASE HEAD -- '*.png' || true)
+            else
+              CHANGED_FILES=$(git diff --diff-filter=AMR --name-only -z HEAD~1 HEAD -- '*.png' || true)
+            fi
           fi
 
           if [ -z "$CHANGED_FILES" ]; then
