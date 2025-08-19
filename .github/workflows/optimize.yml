@@ -1,105 +1,11 @@
 name: Optimize PNG files
 
 on:
-  pull_request:
-    branches: [ "**" ]
-  push:
-    branches: [ "**" ]
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
 
 jobs:
-  compress:
-    name: Compress and make a PR if needed
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Install oxipng
-        run: cargo install oxipng
-
-      - name: Install GitHub CLI
-        run: sudo apt-get install -y gh
-
-      - name: Skip if latest commit is an oxipng-optimization
-        run: |
-          LAST_COMMIT_MSG=$(git log -1 --pretty=%B)
-          echo "Last commit message: $LAST_COMMIT_MSG"
-          if [[ "$LAST_COMMIT_MSG" == *oxipng-optimization* ]]; then
-            echo "Latest commit is an oxipng-optimization commit, skipping workflow."
-            exit 0
-          fi
-
-      - name: Optimize changed PNG files with oxipng
-        id: optimize_png
-        run: |
-          set -euo pipefail
-          FAILED_FILES=""
-
-          CHANGED_FILES=$(git diff --name-only origin/${PR_BRANCH}...HEAD | grep '\.png$' || true)
-
-          if [[ -z "$CHANGED_FILES" ]]; then
-            echo "No changed PNG files to optimize."
-            exit 0
-          fi
-
-          while IFS= read -r file; do
-            echo "Compressing: $file"
-            if ! oxipng -o max --strip safe --alpha "$file" >/dev/null 2>&1; then
-              FAILED_FILES+="$file"$'\n'
-            fi
-          done <<< "$CHANGED_FILES"
-
-          if [[ -n "$FAILED_FILES" ]]; then
-            echo "failed_files<<EOF" >> "$GITHUB_OUTPUT"
-            echo "$FAILED_FILES" >> "$GITHUB_OUTPUT"
-            echo "EOF" >> "$GITHUB_OUTPUT"
-            exit 1
-          fi
-
-      - name: Print files that failed to compress
-        if: failure() && steps.optimize_png.outputs.failed_files != ''
-        run: |
-          echo "The following files failed to compress:"
-          echo "${{ steps.optimize_png.outputs.failed_files }}"
-
-      - name: Check for changes
-        id: check_changes
-        run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
-            echo "needs_compression=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "needs_compression=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Create Pull Request if Needed
-        if: ${{ steps.check_changes.outputs.needs_compression == 'true' && github.event_name == 'pull_request' && !github.event.pull_request.draft }}
-        run: |
-          git config user.name "GitHub GTNH Actions"
-          git config user.email "<>"
-          FIXED_BRANCH="${PR_BRANCH}-image-compression"
-
-          git switch -c "${FIXED_BRANCH}"
-          git commit -am "oxipng-optimization"
-          git push --force-with-lease origin "${FIXED_BRANCH}"
-
-          gh pr create \
-            --head "${FIXED_BRANCH}" \
-            --base "${PR_BRANCH}" \
-            --title "Optimize PNG images in ${PR_BRANCH} for #${{ github.event.pull_request.number }}" \
-            --body "Automatic PNG compression using oxipng. Applies to PR #${{ github.event.pull_request.number }}" \
-            2>&1 | tee pr-message.log || true
-
-          gh pr comment "${PR_BRANCH}" -F pr-message.log || true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_BRANCH: ${{ github.head_ref }}
-
-      - name: Fail if there were compressed files
-        if: ${{ steps.check_changes.outputs.needs_compression == 'true' }}
-        run: exit 1
+  build-and-test:
+    uses: GTNewHorizons/GTNH-Actions-Workflows/.github/workflows/optimize-images.yml@image_compression
+    secrets: inherit
