@@ -8,5 +8,5 @@ on:
 
 jobs:
   build-and-test:
-    uses: GTNewHorizons/GTNH-Actions-Workflows/.github/workflows/optimize-images.yml@image_compression
+    uses: ./.github/workflows/optimize.yml@
     secrets: inherit
