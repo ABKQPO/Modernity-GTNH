@@ -36,18 +36,25 @@ jobs:
             exit 0
           fi
 
-      - name: Optimize PNG files with oxipng
+      - name: Optimize changed PNG files with oxipng
         id: optimize_png
         run: |
           set -euo pipefail
           FAILED_FILES=""
 
-          while IFS= read -r -d '' file; do
+          CHANGED_FILES=$(git diff --name-only origin/${PR_BRANCH}...HEAD | grep '\.png$' || true)
+
+          if [[ -z "$CHANGED_FILES" ]]; then
+            echo "No changed PNG files to optimize."
+            exit 0
+          fi
+
+          while IFS= read -r file; do
             echo "Compressing: $file"
             if ! oxipng -o max --strip safe --alpha "$file" >/dev/null 2>&1; then
               FAILED_FILES+="$file"$'\n'
             fi
-          done < <(find . -type f -name "*.png" ! -path "./.git/*" -print0)
+          done <<< "$CHANGED_FILES"
 
           if [[ -n "$FAILED_FILES" ]]; then
             echo "failed_files<<EOF" >> "$GITHUB_OUTPUT"
