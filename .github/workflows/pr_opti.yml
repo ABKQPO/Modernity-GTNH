@@ -8,5 +8,5 @@ on:
 
 jobs:
   build-and-test:
-    uses: ./.github/workflows/optimize.yml@
+    uses: ./.github/workflows/optimize.yml
     secrets: inherit
