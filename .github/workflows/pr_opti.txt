@@ -1,0 +1,15 @@
+name: Check images
+
+on:
+  pull_request:
+    branches: [ "**" ]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-images:
+    name: PNG compression check
+    uses: ./.github/workflows/optimize.yml
+    secrets: inherit
