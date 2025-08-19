@@ -6,6 +6,10 @@ on:
   push:
     branches: [ "**" ]
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   compress:
     name: Compress and make a PR if needed
@@ -35,20 +39,34 @@ jobs:
             exit 0
           fi
 
+      - name: Prepare PR diff commits
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          git fetch origin $BASE_SHA --depth=1
+          git fetch origin $HEAD_SHA --depth=1
+          echo "BASE_SHA=$BASE_SHA" >> $GITHUB_ENV
+          echo "HEAD_SHA=$HEAD_SHA" >> $GITHUB_ENV
+
       - name: Optimize changed PNG files with oxipng
         id: optimize_png
         run: |
           set -euo pipefail
           FAILED_FILES=""
 
-          CHANGED_FILES=$(git diff --name-only origin/${PR_BRANCH}...HEAD | grep '\.png$' || true)
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            CHANGED_FILES=$(git diff --diff-filter=AMR --name-only -z "$BASE_SHA" "$HEAD_SHA" -- '*.png' || true)
+          else
+            CHANGED_FILES=$(git diff --diff-filter=AMR --name-only -z HEAD~1 HEAD -- '*.png' || true)
+          fi
 
-          if [[ -z "$CHANGED_FILES" ]]; then
+          if [ -z "$CHANGED_FILES" ]; then
             echo "No changed PNG files to optimize."
             exit 0
           fi
 
-          while IFS= read -r file; do
+          while IFS= read -r -d '' file; do
             echo "Compressing: $file"
             if ! oxipng -o max --strip safe --alpha "$file" >/dev/null 2>&1; then
               FAILED_FILES+="$file"$'\n'
