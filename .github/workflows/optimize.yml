@@ -1,11 +1,10 @@
-name: Check for image compression
+name: Optimize PNG files
 
 on:
-  workflow_call:
-
-permissions:
-  contents: write
-  pull-requests: write
+  pull_request:
+    branches: [ "**" ]
+  push:
+    branches: [ "**" ]
 
 jobs:
   compress:
