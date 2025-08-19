@@ -1,18 +1,19 @@
-name: Optimize PNG with Oxipng
+name: Check for image compression
 
 on:
-  push:
-    branches: ["**"]
+  workflow_call:
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  optimize-png:
+  compress:
+    name: Compress and make a PR if needed
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -26,23 +27,7 @@ jobs:
       - name: Install GitHub CLI
         run: sudo apt-get install -y gh
 
-      - name: Check if PR is an Optimize PNG PR
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          set -e
-          export LANG=C.UTF-8
-          gh auth login --with-token <<< "$GH_PAT"
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            PR_TITLE=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
-            echo "Current PR title: $PR_TITLE"
-            if [[ "$PR_TITLE" == Optimize\ PNG* ]]; then
-              echo "Skipping workflow for Optimize PNG PR."
-              exit 0
-            fi
-          fi
-
-      - name: Skip if latest commit is an Oxipng optimization
+      - name: Skip if latest commit is an oxipng-optimization
         run: |
           LAST_COMMIT_MSG=$(git log -1 --pretty=%B)
           echo "Last commit message: $LAST_COMMIT_MSG"
@@ -51,95 +36,64 @@ jobs:
             exit 0
           fi
 
-      - name: Prepare diff commits
+      - name: Optimize PNG files with oxipng
+        id: optimize_png
         run: |
-          EVENT_NAME="${{ github.event_name }}"
-          if [ "$EVENT_NAME" = "pull_request" ]; then
-            BASE_SHA="${{ github.event.pull_request.base.sha }}"
-            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
-          else
-            BASE_SHA="${{ github.event.before }}"
-            HEAD_SHA="${{ github.sha }}"
-          fi
+          set -euo pipefail
+          FAILED_FILES=""
 
-          git fetch origin "$BASE_SHA" --depth=1 || true
-          git fetch origin "$HEAD_SHA" --depth=1 || true
-
-          echo "BASE_SHA=$BASE_SHA" >> $GITHUB_ENV
-          echo "HEAD_SHA=$HEAD_SHA" >> $GITHUB_ENV
-
-      - name: Optimize PNG files
-        run: |
-          export LANG=C.UTF-8
-          echo "Base SHA: $BASE_SHA"
-          echo "Head SHA: $HEAD_SHA"
-
-          git diff --diff-filter=AMR --name-only -z "$BASE_SHA" "$HEAD_SHA" -- '*.png' > changed_pngs.txt || true
-
-          if [ ! -s changed_pngs.txt ]; then
-            echo "No PNG files changed."
-            exit 0
-          fi
-
-          echo "Optimizing PNGs..."
           while IFS= read -r -d '' file; do
-            if [ -f "$file" ]; then
-              echo "Optimizing: $file"
-              oxipng -o 6 --alpha "$file"
-            else
-              echo "File not found: $file"
+            echo "Compressing: $file"
+            if ! oxipng -o max --strip safe --alpha "$file" >/dev/null 2>&1; then
+              FAILED_FILES+="$file"$'\n'
             fi
-          done < changed_pngs.txt
+          done < <(find . -type f -name "*.png" ! -path "./.git/*" -print0)
 
-      - name: Commit changes to new branch
-        run: |
-          BRANCH_NAME="oxipng-optimization-${{ github.run_id }}"
-          git checkout -b "$BRANCH_NAME"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          if [ ! -s changed_pngs.txt ]; then
-            echo "No PNG files to optimize, skipping."
-            exit 0
+          if [[ -n "$FAILED_FILES" ]]; then
+            echo "failed_files<<EOF" >> "$GITHUB_OUTPUT"
+            echo "$FAILED_FILES" >> "$GITHUB_OUTPUT"
+            echo "EOF" >> "$GITHUB_OUTPUT"
+            exit 1
           fi
 
-          git add -A
-          git restore --staged changed_pngs.txt 2>/dev/null || true
-          rm -f changed_pngs.txt
-
-          if git diff --cached --quiet; then
-            echo "No changes found after optimization."
-            exit 0
-          fi
-
-          git commit -m "Optimize PNG images with oxipng"
-          git push origin "$BRANCH_NAME"
-
-          echo "branch_name=$BRANCH_NAME" >> $GITHUB_ENV
-
-      - name: Create Pull Request
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+      - name: Print files that failed to compress
+        if: failure() && steps.optimize_png.outputs.failed_files != ''
         run: |
-          set -e
-          export LANG=C.UTF-8
-          gh auth login --with-token <<< "$GH_PAT"
+          echo "The following files failed to compress:"
+          echo "${{ steps.optimize_png.outputs.failed_files }}"
 
-          EVENT_NAME="${{ github.event_name }}"
-          if [ "$EVENT_NAME" = "pull_request" ]; then
-            TARGET_LABEL="PR #${{ github.event.pull_request.number }}"
-            BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "needs_compression=true" >> "$GITHUB_OUTPUT"
           else
-            TARGET_LABEL="Commit ${{ github.sha }}"
-            BASE_BRANCH="${{ github.ref_name }}"
+            echo "needs_compression=false" >> "$GITHUB_OUTPUT"
           fi
 
-          git fetch origin
-          git checkout "${{ env.branch_name }}" || exit 1
-          git push origin "${{ env.branch_name }}" || true
+      - name: Create Pull Request if Needed
+        if: ${{ steps.check_changes.outputs.needs_compression == 'true' && github.event_name == 'pull_request' && !github.event.pull_request.draft }}
+        run: |
+          git config user.name "GitHub GTNH Actions"
+          git config user.email "<>"
+          FIXED_BRANCH="${PR_BRANCH}-image-compression"
+
+          git switch -c "${FIXED_BRANCH}"
+          git commit -am "oxipng-optimization"
+          git push --force-with-lease origin "${FIXED_BRANCH}"
 
           gh pr create \
-            --base "$BASE_BRANCH" \
-            --head "${{ env.branch_name }}" \
-            --title "Optimize PNG images for $TARGET_LABEL" \
-            --body "**Optimized PNG images for $TARGET_LABEL**"
+            --head "${FIXED_BRANCH}" \
+            --base "${PR_BRANCH}" \
+            --title "Optimize PNG images in ${PR_BRANCH} for #${{ github.event.pull_request.number }}" \
+            --body "Automatic PNG compression using oxipng. Applies to PR #${{ github.event.pull_request.number }}" \
+            2>&1 | tee pr-message.log || true
+
+          gh pr comment "${PR_BRANCH}" -F pr-message.log || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_BRANCH: ${{ github.head_ref }}
+
+      - name: Fail if there were compressed files
+        if: ${{ steps.check_changes.outputs.needs_compression == 'true' }}
+        run: exit 1
