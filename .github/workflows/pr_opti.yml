@@ -1,8 +1,8 @@
 name: Check images
 
 on:
-  pull_request:
-    branches: [ "**" ]
+  workflow_dispatch:
+  pull_request_target:
 
 permissions:
   contents: write
