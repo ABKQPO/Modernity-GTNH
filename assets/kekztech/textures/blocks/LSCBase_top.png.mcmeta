@@ -1,5 +1,8 @@
 {
-    "myctmlib": {
-        "connection": "kekztech:LSCBase_top_ctm"
-    }
+  "myctmlib": {
+    "connection": "kekztech:LSCBase_top_ctm",
+    "equivalents": [
+      "kekztech:LSCBase_side"
+    ]
+  }
 }
