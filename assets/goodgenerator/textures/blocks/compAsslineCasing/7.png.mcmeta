@@ -1,10 +1,6 @@
 {
-  "animation": {
-    "interpolate": true,
-    "frametime": 20
-  },
   "myctmlib": {
-    "connection": "GoodGenerator:compAsslineCasing/8_ctm",
+    "connection": "GoodGenerator:compAsslineCasing/7_ctm",
     "equivalents": [
       "gregtech:iconsets/MACHINE_CASING_IRIDIUM",
       "GoodGenerator:compAsslineCasing/1",
@@ -13,8 +9,8 @@
       "GoodGenerator:compAsslineCasing/4",
       "GoodGenerator:compAsslineCasing/5",
       "GoodGenerator:compAsslineCasing/6",
-      "GoodGenerator:compAsslineCasing/7",
       "GoodGenerator:compAsslineCasing/0",
+      "GoodGenerator:compAsslineCasing/8",
       "GoodGenerator:compAsslineCasing/9",
       "GoodGenerator:compAsslineCasing/10",
       "GoodGenerator:compAsslineCasing/11",

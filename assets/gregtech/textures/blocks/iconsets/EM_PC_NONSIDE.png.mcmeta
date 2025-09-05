@@ -1,5 +1,10 @@
 {
-    "myctmlib": {
-        "connection": "gregtech:iconsets/EM_PC_NONSIDE_ctm"
-    }
+  "myctmlib": {
+    "connection": "gregtech:iconsets/EM_PC_NONSIDE_ctm",
+    "equivalents": [
+      "gregtech:iconsets/EM_PC",
+      "gregtech:iconsets/EM_PC_VENT",
+      "gregtech:iconsets/EM_PC_VENT_NONSIDE"
+    ]
+  }
 }
