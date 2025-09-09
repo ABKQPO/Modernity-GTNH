@@ -30,9 +30,13 @@ jobs:
         OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
         Just-Productive-Bees=https://github.com/DarkScorpyon/Just-Productive-Bees-
         Just-Forestry-Bees=https://github.com/DarkScorpyon/Just-Forestry-Bees-
+        Modernity-GTNH-UI=https://github.com/ABKQPO/Modernity-GTNH-UI
+        Modernity-GTNH-Dark-UI=https://github.com/ABKQPO/Modernity-GTNH-Dark-UI
       EXTERNAL_ZIP_NAME_OutlinedOres_Modern: "Modernity-GTNH-OutlinedOres.zip"
       EXTERNAL_ZIP_NAME_Just_Productive_Bees: "Modernity-GTNH-Just-Productive-Bees.zip"
       EXTERNAL_ZIP_NAME_Just_Forestry_Bees: "Modernity-GTNH-Just-Forestry-Bees.zip"
+      EXTERNAL_ZIP_NAME_Modernity_GTNH_UI: "Modernity-GTNH-UI.zip"
+      EXTERNAL_ZIP_NAME_Modernity_GTNH_Dark_UI: "Modernity-GTNH-Dark-UI.zip"
 
     steps:
       - name: Checkout Code
@@ -113,6 +117,8 @@ jobs:
           EXTERNAL_ZIP_NAME_OutlinedOres_Modern: ${{ env.EXTERNAL_ZIP_NAME_OutlinedOres_Modern }}
           EXTERNAL_ZIP_NAME_Just_Productive_Bees: ${{ env.EXTERNAL_ZIP_NAME_Just_Productive_Bees }}
           EXTERNAL_ZIP_NAME_Just_Forestry_Bees: ${{ env.EXTERNAL_ZIP_NAME_Just_Forestry_Bees }}
+          EXTERNAL_ZIP_NAME_Modernity_GTNH_UI: ${{ env.EXTERNAL_ZIP_NAME_Modernity_GTNH_UI }}
+          EXTERNAL_ZIP_NAME_Modernity_GTNH_Dark_UI: ${{ env.EXTERNAL_ZIP_NAME_Modernity_GTNH_Dark_UI }}
 
       - name: Download latest two MyCTMLib jars
         run: |
@@ -135,9 +141,11 @@ jobs:
           make_latest: true
           files: |
             Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
+            Modernity-GTNH-UI.zip
+            Modernity-GTNH-Dark-UI.zip
+            Modernity-GTNH-OutlinedOres.zip
             Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip
             Modernity-GTNH-GTNLResonaticCircuit.zip
-            Modernity-GTNH-OutlinedOres.zip
             Modernity-GTNH-Just-Productive-Bees.zip
             Modernity-GTNH-Just-Forestry-Bees.zip
             jars/MyCTMLib-${{ env.TAG1 }}.jar

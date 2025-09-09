@@ -12,9 +12,7 @@ All textures, including UI elements, blocks, and items, will be completely redra
 
 ## Recommended texturepacks and addons
 
-WIP
-
-~~(Maybe not)~~
+Another Dark UI [Shadow-UI](https://github.com/Ranzuu/Shadow-UI)
 
 ## UI resourcepacks
 
@@ -67,6 +65,8 @@ You only need to install [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and ad
 
 ## Special Thanks
 
+### Auynonymous
+
 MCTBL
 
 黑崎
@@ -79,7 +79,9 @@ DarkScorpyon
 
 ## Join us
 
-QQ : 961382654
+[![QQ Group](https://img.shields.io/badge/QQ-961382654-12B7F5?logo=qq&logoColor=white)](https://qm.qq.com/q/IQTB6JHkoC)
+
+[![Join our Discord](https://img.shields.io/discord/1406476073096450128?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/cZTMm6Rzvx)
 
 ### Licensing
 
