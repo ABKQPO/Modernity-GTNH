@@ -12,9 +12,7 @@ All textures, including UI elements, blocks, and items, will be completely redra
 
 ## Recommended texturepacks and addons
 
-WIP
-
-~~(Maybe not)~~
+Another Dark UI [Shadow-UI](https://github.com/Ranzuu/Shadow-UI)
 
 ## UI resourcepacks
 
