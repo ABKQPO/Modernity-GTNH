@@ -12,7 +12,9 @@ All textures, including UI elements, blocks, and items, will be completely redra
 
 ## Recommended texturepacks and addons
 
-Another Dark UI [Shadow-UI](https://github.com/Ranzuu/Shadow-UI)
+Shadow UI [Shadow-UI](https://github.com/Ranzuu/Shadow-UI)
+
+AE2 Dark Mode [AE2-Dark-Mode](https://github.com/Ranzuu/AE2-Dark-Mode)
 
 ## UI resourcepacks
 
