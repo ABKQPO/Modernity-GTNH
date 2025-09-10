@@ -32,13 +32,11 @@ jobs:
         Just-Forestry-Bees=https://github.com/DarkScorpyon/Just-Forestry-Bees-
         Modernity-GTNH-UI=https://github.com/ABKQPO/Modernity-GTNH-UI
         Modernity-GTNH-Dark-UI=https://github.com/ABKQPO/Modernity-GTNH-Dark-UI
-        AE2-Dark-Mode=https://github.com/Ranzuu/AE2-Dark-Mode
       EXTERNAL_ZIP_NAME_OutlinedOres_Modern: "Modernity-GTNH-OutlinedOres.zip"
       EXTERNAL_ZIP_NAME_Just_Productive_Bees: "Modernity-GTNH-Just-Productive-Bees.zip"
       EXTERNAL_ZIP_NAME_Just_Forestry_Bees: "Modernity-GTNH-Just-Forestry-Bees.zip"
       EXTERNAL_ZIP_NAME_Modernity_GTNH_UI: "Modernity-GTNH-UI.zip"
       EXTERNAL_ZIP_NAME_Modernity_GTNH_Dark_UI: "Modernity-GTNH-Dark-UI.zip"
-      EXTERNAL_ZIP_NAME_AE2_Dark_Mode: "AE2-Dark-Mode.zip"
 
     steps:
       - name: Checkout Code
@@ -121,7 +119,6 @@ jobs:
           EXTERNAL_ZIP_NAME_Just_Forestry_Bees: ${{ env.EXTERNAL_ZIP_NAME_Just_Forestry_Bees }}
           EXTERNAL_ZIP_NAME_Modernity_GTNH_UI: ${{ env.EXTERNAL_ZIP_NAME_Modernity_GTNH_UI }}
           EXTERNAL_ZIP_NAME_Modernity_GTNH_Dark_UI: ${{ env.EXTERNAL_ZIP_NAME_Modernity_GTNH_Dark_UI }}
-          EXTERNAL_ZIP_NAME_AE2_Dark_Mode: ${{ env.EXTERNAL_ZIP_NAME_AE2_Dark_Mode }}
 
       - name: Download latest two MyCTMLib jars
         run: |
@@ -151,6 +148,5 @@ jobs:
             Modernity-GTNH-GTNLResonaticCircuit.zip
             Modernity-GTNH-Just-Productive-Bees.zip
             Modernity-GTNH-Just-Forestry-Bees.zip
-            AE2-Dark-Mode.zip
             jars/MyCTMLib-${{ env.TAG1 }}.jar
             jars/MyCTMLib-${{ env.TAG2 }}.jar
