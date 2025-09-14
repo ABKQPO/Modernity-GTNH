@@ -113,3 +113,6 @@ Futura Tools main page: https://github.com/S4mpsa/FuturaTools
 
 
 Thanks to Auynonymous for letting us use Solenoid Superconductor Coils
+
+
+Battery & ULV Casing CTM by Connected-GT: https://modrinth.com/resourcepack/connected-gt/versions
