@@ -90,12 +90,14 @@ DarkScorpyon
  [![](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellow.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ### Additional Credits
+Most of the original textures come from [GregTech: Refreshed](https://github.com/ULSTICK/GregTechRefreshed), MIT License
+
 Thanks to Aim__Boot for letting us use the following textures from [Ashen](https://www.curseforge.com/minecraft/texture-packs/ashen-16x):
 
 bone block, mossy brick, cobblestone, mossy cobblestone, diamond block, gold block, gravel, raw iron block, lapis block
 
 
-Thanks to Ghostipedia for letting us use the following textures from [CosmicCore](https://github.com/Frontiers-PackForge/CosmicCore)
+Thanks to Ghostipedia for letting us use the following textures from [CosmicCore](https://github.com/Frontiers-PackForge/CosmicCore), MIT License
 
 Thanks to GregTech-Odyssey Team for letting us use the following textures [from GTOCore](https://github.com/GregTech-Odyssey/GTOCore)
 
@@ -103,6 +105,6 @@ Thanks to Sampsa for letting us use Vajra/Matter Manipulator [from Futura Tools]
 
 Thanks to Auynonymous for letting us use Solenoid Superconductor Coils
 
-Battery & ULV Casing CTM by [Connected-GT](https://modrinth.com/resourcepack/connected-gt/versions)
+Battery & ULV Casing CTM by [Connected-GT](https://modrinth.com/resourcepack/connected-gt), MIT License
 
-Avaritia Textures by [Re:Avaritia](https://github.com/Nova-Committee/Re-Avaritia)
+Avaritia Textures by [Re:Avaritia](https://github.com/Nova-Committee/Re-Avaritia), CC BY-NC-SA 4.0 License
