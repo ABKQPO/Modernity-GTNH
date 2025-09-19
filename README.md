@@ -101,7 +101,7 @@ Thanks to Ghostipedia for letting us use the following textures from [CosmicCore
 
 Thanks to GregTech-Odyssey Team for letting us use the following textures [from GTOCore](https://github.com/GregTech-Odyssey/GTOCore)
 
-Thanks to Sampsa for letting us use Vajra/Matter Manipulator [from Futura Tools](https://github.com/S4mpsa/FuturaTools)
+Thanks to Sampsa for letting us use Vajra/Matter Manipulator from [Futura Tools](https://github.com/S4mpsa/FuturaTools)
 
 Thanks to Auynonymous for letting us use Solenoid Superconductor Coils
 
