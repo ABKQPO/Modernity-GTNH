@@ -1,4 +1,5 @@
 gregtech/gt.blockcasings5:*
+gregtech/gt.blockcasings10:*
 gregtech/gt.blockglass1:*
 gregtech/gt.blockreinforced:*
 
