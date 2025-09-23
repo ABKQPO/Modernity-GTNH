@@ -19,15 +19,24 @@ if [[ -z "$TARGETS" ]]; then
 fi
 TARGETS="$(echo "${TARGETS}" | tr ' ' '\n')"
 
-echo "List of targets:"
-echo "${TARGETS}"
-echo
-
 dir="${PWD}/assets/minecraft/mcpatcher/ctm/Modernity-GTNH/"
 echo "Project dir: ${dir}"
 echo
 
 cd "${dir}" || exit
+
+GLOBBED_TARGETS=""
+while read line; do
+    if [[ "${line}" ]]; then
+        GLOBBED_TARGETS="${GLOBBED_TARGETS} $(echo ${line})"
+    fi
+done <<< "${TARGETS}"
+GLOBBED_TARGETS="${GLOBBED_TARGETS:1}"
+GLOBBED_TARGETS="$(echo "${GLOBBED_TARGETS}" | tr " " "\n")"
+
+echo "List of targets:"
+echo "${GLOBBED_TARGETS}"
+echo
 
 export SCRIPT
 generate() {
@@ -39,6 +48,7 @@ generate() {
 export -f generate
 
 echo "Generating..."
-echo "${TARGETS}" | parallel --bar generate
+
+echo "${GLOBBED_TARGETS}" | parallel --bar generate
 echo
 echo "Done!"
