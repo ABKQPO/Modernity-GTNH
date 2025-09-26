@@ -133,11 +133,12 @@ jobs:
           TAG2: ${{ env.TAG2 }}
 
       - name: Build release body from BUILD_README.md
-        id: build_readme
         run: |
-          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
-          cat BUILD_README.md >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          {
+            echo "RELEASE_BODY<<EOF"
+            cat BUILD_README.md
+            echo "EOF"
+          } >> $GITHUB_ENV
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
