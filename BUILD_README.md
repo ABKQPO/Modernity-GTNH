@@ -1,13 +1,9 @@
 ## Modernity-GTNH
 The main resource pack. Needs to be placed at the very bottom of the resource pack load order.
 
-## CTM Textures
-
-**Starting from version 1.1.0, there is no need to place the configuration file anymore.  
-You only need to install [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and add the resource pack to use connected textures.**  
-**Older versions still require adding the configuration file!**
-
-> ### **Note: Please download the mod version that matches your modpack**
+> # **CTM Textures**
+> ## **CTMLIB IS REQUIRED FOR CONNECTED TEXTURES**
+> ### **Download the mod file for your corresponding GTNH version from the file list below**
 
 ## Modernity-GTNH-UI
 GUI resource pack providing AE2-style GUI textures inspired by Minecraft 1.21+.
