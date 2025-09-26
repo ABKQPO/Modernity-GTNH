@@ -23,8 +23,8 @@ jobs:
 
       TARGET_BRANCHES: "main no_mixed_color_gc_plate resonatic_circuit"
       ZIP_NAME_main: "Modernity-GTNH-{SHA}-pre.zip"
-      ZIP_NAME_no_mixed_color_gc_plate: "Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip"
-      ZIP_NAME_resonatic_circuit: "Modernity-GTNH-GTNLResonaticCircuit.zip"
+      ZIP_NAME_no_mixed_color_gc_plate: "Modernity-GTNHAddon-NoMixinColorGCHeavyMaterial.zip"
+      ZIP_NAME_resonatic_circuit: "Modernity-GTNHAddon-GTNLResonaticCircuit.zip"
 
       EXTERNAL_REPOS: |
         OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
@@ -32,9 +32,9 @@ jobs:
         Just-Forestry-Bees=https://github.com/DarkScorpyon/Just-Forestry-Bees-
         Modernity-GTNH-UI=https://github.com/ABKQPO/Modernity-GTNH-UI
         Modernity-GTNH-Dark-UI=https://github.com/ABKQPO/Modernity-GTNH-Dark-UI
-      EXTERNAL_ZIP_NAME_OutlinedOres_Modern: "Modernity-GTNH-OutlinedOres.zip"
-      EXTERNAL_ZIP_NAME_Just_Productive_Bees: "Modernity-GTNH-Just-Productive-Bees.zip"
-      EXTERNAL_ZIP_NAME_Just_Forestry_Bees: "Modernity-GTNH-Just-Forestry-Bees.zip"
+      EXTERNAL_ZIP_NAME_OutlinedOres_Modern: "Modernity-GTNHAddon-OutlinedOres.zip"
+      EXTERNAL_ZIP_NAME_Just_Productive_Bees: "Modernity-GTNHAddon-Just-Productive-Bees.zip"
+      EXTERNAL_ZIP_NAME_Just_Forestry_Bees: "Modernity-GTNHAddon-Just-Forestry-Bees.zip"
       EXTERNAL_ZIP_NAME_Modernity_GTNH_UI: "Modernity-GTNH-UI.zip"
       EXTERNAL_ZIP_NAME_Modernity_GTNH_Dark_UI: "Modernity-GTNH-Dark-UI.zip"
 
@@ -132,6 +132,13 @@ jobs:
           TAG1: ${{ env.TAG1 }}
           TAG2: ${{ env.TAG2 }}
 
+      - name: Build release body from BUILD_README.md
+        id: build_readme
+        run: |
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          cat BUILD_README.md >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -139,14 +146,15 @@ jobs:
           tag_name: commit-${{ env.SHORT_SHA }}
           prerelease: false
           make_latest: true
+          body: ${{ env.RELEASE_BODY }}
           files: |
             Modernity-GTNH-${{ env.SHORT_SHA }}-pre.zip
             Modernity-GTNH-UI.zip
             Modernity-GTNH-Dark-UI.zip
-            Modernity-GTNH-OutlinedOres.zip
-            Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip
-            Modernity-GTNH-GTNLResonaticCircuit.zip
-            Modernity-GTNH-Just-Productive-Bees.zip
-            Modernity-GTNH-Just-Forestry-Bees.zip
+            Modernity-GTNHAddon-OutlinedOres.zip
+            Modernity-GTNHAddon-NoMixinColorGCHeavyMaterial.zip
+            Modernity-GTNHAddon-GTNLResonaticCircuit.zip
+            Modernity-GTNHAddon-Just-Productive-Bees.zip
+            Modernity-GTNHAddon-Just-Forestry-Bees.zip
             jars/MyCTMLib-${{ env.TAG1 }}.jar
             jars/MyCTMLib-${{ env.TAG2 }}.jar
