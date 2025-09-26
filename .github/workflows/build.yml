@@ -135,11 +135,7 @@ jobs:
       - name: Build release body from BUILD_README.md
         run: |
           git checkout main
-          {
-            echo 'RELEASE_BODY<<EOF'
-            cat BUILD_README.md
-            echo 'EOF'
-          } | tee -a $GITHUB_ENV
+          printf "RELEASE_BODY<<EOF\n%s\nEOF\n" "$(cat BUILD_README.md)" >> $GITHUB_ENV
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
