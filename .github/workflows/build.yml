@@ -136,10 +136,10 @@ jobs:
         run: |
           git checkout main
           {
-            echo "RELEASE_BODY<<EOF"
+            echo 'RELEASE_BODY<<EOF'
             cat BUILD_README.md
-            echo "EOF"
-          } >> $GITHUB_ENV
+            echo 'EOF'
+          } | tee -a $GITHUB_ENV
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
