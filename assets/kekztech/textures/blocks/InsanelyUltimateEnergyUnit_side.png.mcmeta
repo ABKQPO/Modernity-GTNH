@@ -7,5 +7,8 @@
 			0,
 			1
 		]
-	}
+	},
+    "myctmlib": {
+        "connection": "kekztech:InsanelyUltimateEnergyUnit_side_ctm"
+    }
 }
