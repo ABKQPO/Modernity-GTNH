@@ -1,5 +1,5 @@
 {
-  "animation": {
-    "frames": 1
-  }
+   "animation": {
+      "frametime": 1
+   }
 }
