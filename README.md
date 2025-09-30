@@ -14,7 +14,7 @@ All textures, including UI elements, blocks, and items, and effects will be comp
 
 **When [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) is installed, certain blocks will be given connecting textures with themselves and others, massively improving the look of your machines!**
 
-**Download the version of [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) that matches your major version!
+**Download the version of [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) that matches your major version!**
 
 > Download 27x for 2.7
 
@@ -26,9 +26,6 @@ All textures, including UI elements, blocks, and items, and effects will be comp
 You only need to install [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and add the resource pack to use connected textures.**  
 **Older versions still require adding the configuration file!**
 
-> Note: Please download the mod version that matches your modpack
-
->
 >Older mod is temporarily suspended from updating, but it can still be used.
 >
 >https://github.com/ElytraServers/MyCTMLib
