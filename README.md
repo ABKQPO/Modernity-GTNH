@@ -4,11 +4,39 @@ The objective of this resource pack is to update all the textures of GTNH to the
 
 However, due to recent extensive changes and modifications being made to GTNH and its related Gregtech modules. ~~We are not currently updating the textures of GT~~ Currently in production.
 
-It's still work in progress, and it is expected to be compatible with GTNH version ~~2.6.0~~  2.7.1.
+It's still work in progress, and it is expected to be compatible with GTNH version ~~2.6.0, 2.7.1~~  2.8.0
 
 ## Features
 
-All textures, including UI elements, blocks, and items, will be completely redrawn.
+All textures, including UI elements, blocks, and items, and effects will be completely redrawn.
+
+## CTM Textures
+
+**When [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) is installed, certain blocks will be given connecting textures with themselves and others, massively improving the look of your machines!**
+
+**Download the version of [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) that matches your major version!**
+
+> Download 27x for 2.7
+
+> Download 28x for 2.8
+
+~~If you want to use connected textures, please download this mod here [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and place the `MyCTMLib.cfg` file into the `config folder`~~
+
+**Starting from version 1.1.0, there is no need to place the configuration file anymore.  
+You only need to install [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and add the resource pack to use connected textures.**  
+**Older versions still require adding the configuration file!**
+
+>Older mod is temporarily suspended from updating, but it can still be used.
+>
+>https://github.com/ElytraServers/MyCTMLib
+>
+>https://github.com/wohaopa/MyCTMLib
+>
+>https://github.com/Soammer/MyCTMLib
+>
+> ### ~~There is a serious Z-Fighting issue!~~
+>
+> This issue has been fixed, but there are still some minor problems remaining
 
 ## Recommended texturepacks and addons
 
@@ -29,29 +57,6 @@ AE2 Dark Mode [AE2-Dark-Mode](https://github.com/Ranzuu/AE2-Dark-Mode)
 [Only-Forestry-Bees](https://github.com/DarkScorpyon/Just-Forestry-Bees-)
 
 *Thanks DarkScorpyon!*
-
-## CTM Textures
-
-~~If you want to use connected textures, please download this mod here [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and place the `MyCTMLib.cfg` file into the `config folder`~~
-
-**Starting from version 1.1.0, there is no need to place the configuration file anymore.  
-You only need to install [`MyCTMLib`](https://github.com/ABKQPO/MyCTMLib) and add the resource pack to use connected textures.**  
-**Older versions still require adding the configuration file!**
-
-> Note: Please download the mod version that matches your modpack
-
->
->Older mod is temporarily suspended from updating, but it can still be used.
->
->https://github.com/ElytraServers/MyCTMLib
->
->https://github.com/wohaopa/MyCTMLib
->
->https://github.com/Soammer/MyCTMLib
->
-> ### ~~There is a serious Z-Fighting issue!~~
->
-> This issue has been fixed, but there are still some minor problems remaining
 
 
 # Images
@@ -102,8 +107,6 @@ Thanks to Ghostipedia for letting us use the following textures from [CosmicCore
 Thanks to GregTech-Odyssey Team for letting us use the following textures from [GTOCore](https://github.com/GregTech-Odyssey/GTOCore)
 
 Thanks to Sampsa for letting us use Vajra/Matter Manipulator from [Futura Tools](https://github.com/S4mpsa/FuturaTools)
-
-Thanks to Auynonymous for letting us use Solenoid Superconductor Coils
 
 Battery & ULV Casing CTM by [Connected-GT](https://modrinth.com/resourcepack/connected-gt), MIT License
 
