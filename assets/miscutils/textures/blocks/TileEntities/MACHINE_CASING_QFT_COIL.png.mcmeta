@@ -1,6 +1,9 @@
 {
     "animation":{
       "interpolate": true,
-      "frametime":8
-   }
+      "frametime":1
+  },
+    "myctmlib": {
+        "connection": "miscutils:TileEntities/MACHINE_CASING_QFT_COIL_ctm"
+}
 }
