@@ -110,4 +110,4 @@ Thanks to Sampsa for letting us use Vajra/Matter Manipulator from [Futura Tools]
 
 Battery & ULV Casing CTM by [Connected-GT](https://modrinth.com/resourcepack/connected-gt), MIT License
 
-Avaritia Textures by [Re:Avaritia](https://github.com/Nova-Committee/Re-Avaritia), CC BY-NC-SA 4.0 License
+Avaritia Textures by [Re:Avaritia](https://github.com/Nova-Committee/Re-Avaritia) and [Avaritia-Integration](https://github.com/Nova-Committee/Avaritia-Integration), CC BY-NC-SA 4.0 License
