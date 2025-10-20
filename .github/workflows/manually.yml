@@ -57,7 +57,7 @@ jobs:
           TAG=${{ github.event.release.tag_name }}
           for BRANCH in $TARGET_BRANCHES; do
             echo "Checking out branch: $BRANCH"
-            git checkout $BRANCH
+            git checkout "$BRANCH"
 
             VAR_NAME="ZIP_NAME_${BRANCH//-/_}"
             ZIP_TEMPLATE="${!VAR_NAME}"
