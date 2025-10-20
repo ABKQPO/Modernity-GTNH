@@ -19,11 +19,11 @@ jobs:
         pack.png
         README.md
 
-      TARGET_BRANCHES: "main no_mixed_color_gc_plate resonatic_circuit 28x"
+      TARGET_BRANCHES: "main no_mixed_color_gc_plate resonatic_circuit fix28x"
       ZIP_NAME_main: "Modernity-GTNH-${{ github.event.release.tag_name }}.zip"
       ZIP_NAME_no_mixed_color_gc_plate: "Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip"
       ZIP_NAME_resonatic_circuit: "Modernity-GTNH-GTNLResonaticCircuit.zip"
-      ZIP_NAME_28x: "Modernity-GTNH-28x.zip"
+      ZIP_NAME_fix28x: "Modernity-GTNH-28x-Fix.zip"
 
       EXTERNAL_REPOS: |
         OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
@@ -86,7 +86,7 @@ jobs:
           ZIP_NAME_main: ${{ env.ZIP_NAME_main }}
           ZIP_NAME_no_mixed_color_gc_plate: ${{ env.ZIP_NAME_no_mixed_color_gc_plate }}
           ZIP_NAME_resonatic_circuit: ${{ env.ZIP_NAME_resonatic_circuit }}
-          ZIP_NAME_28x: ${{ env.ZIP_NAME_28x }}
+          ZIP_NAME_fix28x: ${{ env.ZIP_NAME_fix28x }}
 
       - name: Download and package external repositories
         run: |
@@ -141,7 +141,7 @@ jobs:
           tag_name: ${{ github.event.release.tag_name }}
           files: |
             Modernity-GTNH-${{ github.event.release.tag_name }}.zip
-            Modernity-GTNH-28x.zip
+            Modernity-GTNH-28x-Fix.zip
             Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip
             Modernity-GTNH-GTNLResonaticCircuit.zip
             Modernity-GTNH-OutlinedOres.zip
