@@ -23,7 +23,7 @@ jobs:
       ZIP_NAME_main: "Modernity-GTNH-${{ github.event.release.tag_name }}.zip"
       ZIP_NAME_no_mixed_color_gc_plate: "Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip"
       ZIP_NAME_resonatic_circuit: "Modernity-GTNH-GTNLResonaticCircuit.zip"
-      ZIP_NAME_28x: "Modernity-GTNH-28x-Fix.zip"
+      ZIP_NAME_28x: "Modernity-GTNH-28x.zip"
 
       EXTERNAL_REPOS: |
         OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
@@ -141,7 +141,7 @@ jobs:
           tag_name: ${{ github.event.release.tag_name }}
           files: |
             Modernity-GTNH-${{ github.event.release.tag_name }}.zip
-            Modernity-GTNH-28x-Fix.zip
+            Modernity-GTNH-28x.zip
             Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip
             Modernity-GTNH-GTNLResonaticCircuit.zip
             Modernity-GTNH-OutlinedOres.zip
