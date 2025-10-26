@@ -1,5 +1,15 @@
 {
-    "myctmlib": {
-        "connection": "gregtech:iconsets/MACHINE_DIM_TRANS_CASING_ctm"
-    }
+  "myctmlib": {
+    "connection": "gregtech:iconsets/MACHINE_DIM_TRANS_CASING_ctm",
+    "equivalents": [
+      "gregtech:iconsets/MACHINE_DIM_BRIDGE",
+      "gregtech:iconsets/MACHINE_DIM_TRANS_CASING",
+      "gregtech:iconsets/EM_HOLLOW",
+      "gregtech:iconsets/EM_TIMESPACE",
+      "gregtech:iconsets/EM_ULTIMATE_FIELD",
+      "gregtech:iconsets/STABILITY_CASING_8",
+      "gregtech:iconsets/EM_FIELD_8",
+      "gregtech:iconsets/EM_DIM_8"
+    ]
+  }
 }
