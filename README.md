@@ -1,4 +1,77 @@
-# Modernity-GTNH
+<p align="center">
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/latest">
+    <img src="pack.png" width="150">
+  </a>
+</p>
+
+<h1 align="center">
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/latest" style="text-decoration: none; color: inherit;">
+    Modernity-GTNH
+  </a>
+</h1>
+
+<h2 align="center">
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/Modernity-GTNH-28x-Fix.zip" style="text-decoration: none;">
+    <strong><em>Download GTNH 2.8.x patch Resourcepack</em></strong>
+  </a>
+  <br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/Modernity-GTNH-28x-Fix.zip">
+    <img src="https://img.shields.io/badge/release-v1.5.9-blue"
+         alt="Pre-release"
+         width="100">
+  </a>
+  <br><br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/Modernity-GTNH-v1.5.9.zip" style="text-decoration: none;">
+    <strong><em>Download Latest Official Resourcepack</em></strong>
+  </a>
+  <br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/Modernity-GTNH-v1.5.9.zip">
+    <img src="https://img.shields.io/badge/release-v1.5.9-blue"
+         alt="Pre-release"
+         width="100">
+  </a>
+  <br><br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/tag/v1.5.9" style="text-decoration: none;">
+    <strong><em>Download Other Addon and UI Resourcepack</em></strong>
+  </a>
+  <br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/tag/v1.5.9">
+    <img src="https://img.shields.io/badge/release-v1.5.9-orange"
+         alt="Pre-release"
+         width="100">
+  </a>
+  <br><br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/MyCTMLib-v1.2.5_28x.jar" style="text-decoration: none;">
+    <strong><em>Download MyCTMLib for GTNH 2.8.x</em></strong>
+  </a>
+  <br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/MyCTMLib-v1.2.5_28x.jar">
+    <img src="https://img.shields.io/badge/release-MyCTMLib_v1.2.5_GTNH28x-green"
+         alt="Pre-release"
+         width="240">
+  </a>
+  <br><br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/MyCTMLib-v1.2.5_27x.jar" style="text-decoration: none;">
+    <strong><em>Download MyCTMLib for GTNH 2.7.x</em></strong>
+  </a>
+  <br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/MyCTMLib-v1.2.5_27x.jar">
+    <img src="https://img.shields.io/badge/release-MyCTMLib_v1.2.5_GTNH27x-green"
+         alt="Pre-release"
+         width="240">
+  </a>
+  <br><br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/Modernity-GTNH-v1.5.9.zip" style="text-decoration: none;">
+    <strong><em>Download Latest Auto Build</em></strong>
+  </a>
+  <br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/latest">
+    <img src="https://img.shields.io/github/v/release/ABKQPO/Modernity-GTNH"
+         alt="Latest"
+         width="100">
+  </a>
+</h2>
+
 
 The objective of this resource pack is to update all the textures of GTNH to the style of Minecraft ~~1.14.4+~~ 1.20.1+.
 
