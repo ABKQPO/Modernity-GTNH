@@ -29,5 +29,8 @@ Modern bee textures inspired by higher version Productive Bees.
 ## Modernity-GTNHAddon-Just-Forestry-Bees
 Forestry-style bee textures, replacing bee models with classic Forestry designs.
 
+## Modernity-GTNHAddon-Medium-Large-Turbine
+Allows Large Turbine Wallshare with improved visuals.
+
 
 ## **Addon Resource pack must be placed above the main resource pack!**

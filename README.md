@@ -129,6 +129,8 @@ AE2 Dark Mode [AE2-Dark-Mode](https://github.com/Ranzuu/AE2-Dark-Mode)
 
 [Only-Forestry-Bees](https://github.com/DarkScorpyon/Just-Forestry-Bees-)
 
+[Medium-Large-Turbine](https://github.com/DarkScorpyon/Medium-Large-Turbine/tree/LargeTurbine)
+
 *Thanks DarkScorpyon!*
 
 
