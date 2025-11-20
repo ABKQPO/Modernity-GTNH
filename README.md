@@ -1,4 +1,26 @@
-# Modernity-GTNH
+<p align="center">
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/latest">
+    <img src="pack.png" width="150">
+  </a>
+</p>
+
+<h1 align="center">
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/latest" style="text-decoration: none; color: inherit;">
+    Modernity-GTNH
+  </a>
+</h1>
+
+<h2 align="center">
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/latest" style="text-decoration: none;">
+    <strong><em>Download here</em></strong>
+  </a>
+  <br>
+  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/latest">
+    <img src="https://img.shields.io/github/v/release/ABKQPO/Modernity-GTNH"
+         alt="Latest"
+         width="200">
+  </a>
+</h2>
 
 The objective of this resource pack is to update all the textures of GTNH to the style of Minecraft ~~1.14.4+~~ 1.20.1+.
 
