@@ -1,6 +1,4 @@
-{
-  
-  "animation": {
+{"animation": {
     "frametime": 2,
     "interpolate": true,
     "frametime": 2,
@@ -20,8 +18,5 @@
         "time": 20
       }
     ]
-  },
-    "myctmlib": {
-        "connection": "gregtech:iconsets/EM_CASING_ctm"
-    }
+  }
 }
