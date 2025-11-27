@@ -4,7 +4,7 @@
       "frametime":20
    },
   "myctmlib": {
-    "connection": "gregtech:iconsets/MACHINE_DIM_BRIDGE",
+    "connection": "gregtech:iconsets/MACHINE_DIM_BRIDGE_ctm",
     "equivalents": [
       "gregtech:iconsets/MACHINE_DIM_BRIDGE",
       "gregtech:iconsets/MACHINE_DIM_TRANS_CASING",
