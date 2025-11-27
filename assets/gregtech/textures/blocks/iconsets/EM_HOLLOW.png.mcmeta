@@ -1,7 +1,7 @@
 {
   "animation": {
     "interpolate": true,
-    "frametime": 10
+    "frametime": 8
   },
   "myctmlib": {
     "connection": "gregtech:iconsets/EM_HOLLOW_ctm",
@@ -11,6 +11,7 @@
       "gregtech:iconsets/EM_HOLLOW",
       "gregtech:iconsets/EM_TIMESPACE",
       "gregtech:iconsets/EM_ULTIMATE_FIELD",
+      "gregtech:iconsets/EM_FIELD",
       "gregtech:iconsets/STABILITY_CASING_0",
       "gregtech:iconsets/STABILITY_CASING_1",
       "gregtech:iconsets/STABILITY_CASING_2",
