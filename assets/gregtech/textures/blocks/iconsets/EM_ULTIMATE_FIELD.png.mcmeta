@@ -1,17 +1,16 @@
 {
   "animation": {
     "interpolate": true,
-    "frametime": 8
+    "frametime": 1
   },
   "myctmlib": {
-    "connection": "gregtech:iconsets/EM_HOLLOW_ctm",
+    "connection": "gregtech:iconsets/EM_ULTIMATE_FIELD_ctm",
     "equivalents": [
       "gregtech:iconsets/MACHINE_DIM_BRIDGE",
       "gregtech:iconsets/MACHINE_DIM_TRANS_CASING",
       "gregtech:iconsets/EM_HOLLOW",
       "gregtech:iconsets/EM_TIMESPACE",
       "gregtech:iconsets/EM_ULTIMATE_FIELD",
-      "gregtech:iconsets/EM_FIELD",
       "gregtech:iconsets/STABILITY_CASING_0",
       "gregtech:iconsets/STABILITY_CASING_1",
       "gregtech:iconsets/STABILITY_CASING_2",

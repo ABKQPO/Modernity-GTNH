@@ -1,10 +1,10 @@
 {
   "animation": {
     "interpolate": true,
-    "frametime": 8
+    "frametime": 1
   },
   "myctmlib": {
-    "connection": "gregtech:iconsets/EM_HOLLOW_ctm",
+    "connection": "gregtech:iconsets/EM_FIELD_8_ctm",
     "equivalents": [
       "gregtech:iconsets/MACHINE_DIM_BRIDGE",
       "gregtech:iconsets/MACHINE_DIM_TRANS_CASING",
