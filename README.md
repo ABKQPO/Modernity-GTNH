@@ -176,6 +176,7 @@ Thanks to Aim__Boot for letting us use the following textures from [Ashen](https
 
 bone block, mossy brick, cobblestone, mossy cobblestone, diamond block, gold block, gravel, raw iron block, lapis block
 
+Thanks to zozozrob_ for letting us use thaum-pack from [Thaum-Pack](https://www.curseforge.com/minecraft/texture-packs/thaum-pack)
 
 Thanks to Ghostipedia for letting us use the following textures from [CosmicCore](https://github.com/Frontiers-PackForge/CosmicCore), MIT License
 
