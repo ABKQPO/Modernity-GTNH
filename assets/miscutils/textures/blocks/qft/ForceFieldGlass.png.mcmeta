@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "miscutils:qft/ForceFieldGlass_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:qft/ForceFieldGlass_ctm"
+  }
 }

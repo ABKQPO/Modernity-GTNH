@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "GoodGenerator:yottaFluidTankCasing_SIDE_ctm"
-    }
+  "myctmlib": {
+    "connection": "GoodGenerator:yottaFluidTankCasing_SIDE_ctm"
+  }
 }

@@ -1,6 +1,6 @@
 {
-    "myctmlib": {
-        "connection": "gtnhlanth:casing.shielded_accelerator_ctm",
+  "myctmlib": {
+    "connection": "gtnhlanth:casing.shielded_accelerator_ctm",
     "equivalents": [
       "gtnhlanth:casing.coolant_delivery"
     ]

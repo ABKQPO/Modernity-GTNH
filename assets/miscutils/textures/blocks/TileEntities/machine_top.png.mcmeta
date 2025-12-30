@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "miscutils:TileEntities/machine_top_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:TileEntities/machine_top_ctm"
+  }
 }

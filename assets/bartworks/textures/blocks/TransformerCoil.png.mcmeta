@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "bartworks:TransformerCoil_ctm"
-    }
+  "myctmlib": {
+    "connection": "bartworks:TransformerCoil_ctm"
+  }
 }

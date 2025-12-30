@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "GoodGenerator:supercriticalFluidTurbineCasing_ctm"
-    }
+  "myctmlib": {
+    "connection": "GoodGenerator:supercriticalFluidTurbineCasing_ctm"
+  }
 }

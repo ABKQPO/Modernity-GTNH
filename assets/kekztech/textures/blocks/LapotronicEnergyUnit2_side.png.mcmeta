@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "kekztech:LapotronicEnergyUnit2_side_ctm"
-    }
+  "myctmlib": {
+    "connection": "kekztech:LapotronicEnergyUnit2_side_ctm"
+  }
 }

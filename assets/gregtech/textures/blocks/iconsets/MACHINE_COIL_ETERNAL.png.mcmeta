@@ -1,6 +1,8 @@
 {
-    "animation": {"frametime": 3},
-    "myctmlib": {
-        "connection": "gregtech:iconsets/MACHINE_COIL_ETERNAL_ctm"
-    }
+  "animation": {
+    "frametime": 3
+  },
+  "myctmlib": {
+    "connection": "gregtech:iconsets/MACHINE_COIL_ETERNAL_ctm"
+  }
 }

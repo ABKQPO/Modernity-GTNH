@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "galaxyspace:dysonSwarm/ReceiverCasing_Side_ctm"
-    }
+  "myctmlib": {
+    "connection": "galaxyspace:dysonSwarm/ReceiverCasing_Side_ctm"
+  }
 }

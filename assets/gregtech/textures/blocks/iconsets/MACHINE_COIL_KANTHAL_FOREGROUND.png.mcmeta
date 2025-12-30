@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "gregtech:iconsets/MACHINE_COIL_KANTHAL_FOREGROUND_ctm"
-    }
+  "myctmlib": {
+    "connection": "gregtech:iconsets/MACHINE_COIL_KANTHAL_FOREGROUND_ctm"
+  }
 }

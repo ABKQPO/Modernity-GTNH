@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "GoodGenerator:preciseUnitCasing/1_ctm"
-    }
+  "myctmlib": {
+    "connection": "GoodGenerator:preciseUnitCasing/1_ctm"
+  }
 }

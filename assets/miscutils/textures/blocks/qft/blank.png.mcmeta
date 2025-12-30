@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "miscutils:qft/blank_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:qft/blank_ctm"
+  }
 }

@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "miscutils:TileEntities/reaction_safe_mixing_casing_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:TileEntities/reaction_safe_mixing_casing_ctm"
+  }
 }

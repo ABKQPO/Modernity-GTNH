@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "kubatech:casing/defc_5_ctm"
-    }
+  "myctmlib": {
+    "connection": "kubatech:casing/defc_5_ctm"
+  }
 }

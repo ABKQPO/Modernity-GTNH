@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "miscutils:metro/TEXTURE_TECH_PANEL_A_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:metro/TEXTURE_TECH_PANEL_A_ctm"
+  }
 }

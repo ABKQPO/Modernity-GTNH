@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "miscutils:TileEntities/CASING_AMAZON_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:TileEntities/CASING_AMAZON_ctm"
+  }
 }

@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "miscutils:special/block_3_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:special/block_3_ctm"
+  }
 }

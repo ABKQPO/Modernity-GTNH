@@ -1,8 +1,8 @@
 {
-   "animation":{
-    "frametime":1
-   },
-    "myctmlib": {
-        "connection": "miscutils:qft/InfinityInfusedShieldingCore_ctm"
-    }
+  "animation": {
+    "frametime": 1
+  },
+  "myctmlib": {
+    "connection": "miscutils:qft/InfinityInfusedShieldingCore_ctm"
+  }
 }

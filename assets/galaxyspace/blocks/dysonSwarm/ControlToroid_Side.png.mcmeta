@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "galaxyspace:dysonSwarm/ControlToroid_Side_ctm"
-    }
+  "myctmlib": {
+    "connection": "galaxyspace:dysonSwarm/ControlToroid_Side_ctm"
+  }
 }

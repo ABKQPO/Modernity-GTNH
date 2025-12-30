@@ -1,9 +1,26 @@
 {
-   "animation":{
-    "frametime":2,
-    "frames": [0,0,1,2,3,4,5,6,0,0,1,2,3,4,5,6]
+  "animation": {
+    "frametime": 2,
+    "frames": [
+      0,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      0,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
   },
-    "myctmlib": {
-        "connection": "miscutils:qft/NeutronShieldingCore_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:qft/NeutronShieldingCore_ctm"
+  }
 }

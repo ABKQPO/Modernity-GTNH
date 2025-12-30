@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "miscutils:chrono/MetalSheet8_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:chrono/MetalSheet8_ctm"
+  }
 }

@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "GoodGenerator:MagicCasing_ctm"
-    }
+  "myctmlib": {
+    "connection": "GoodGenerator:MagicCasing_ctm"
+  }
 }

@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "GoodGenerator:magneticFluxCasing_ctm"
-    }
+  "myctmlib": {
+    "connection": "GoodGenerator:magneticFluxCasing_ctm"
+  }
 }

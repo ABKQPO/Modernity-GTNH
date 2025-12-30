@@ -1,7 +1,7 @@
-{ 
-   "animation":{
-      "width":64,
-      "height":64,
-      "frametime":4
-   }
+{
+  "animation": {
+    "width": 64,
+    "height": 64,
+    "frametime": 4
+  }
 }

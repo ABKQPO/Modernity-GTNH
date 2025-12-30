@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "GoodGenerator:rawCylinder_ctm"
-    }
+  "myctmlib": {
+    "connection": "GoodGenerator:rawCylinder_ctm"
+  }
 }

@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "miscutils:TileEntities/sterileCasing_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:TileEntities/sterileCasing_ctm"
+  }
 }

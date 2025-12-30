@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "galaxyspace:dysonSwarm/DeploymentUnitMagnet_ctm"
-    }
+  "myctmlib": {
+    "connection": "galaxyspace:dysonSwarm/DeploymentUnitMagnet_ctm"
+  }
 }

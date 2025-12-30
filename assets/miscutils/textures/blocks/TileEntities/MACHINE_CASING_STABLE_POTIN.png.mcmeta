@@ -1,5 +1,5 @@
 {
-    "myctmlib": {
-        "connection": "miscutils:TileEntities/MACHINE_CASING_STABLE_POTIN_ctm"
-    }
+  "myctmlib": {
+    "connection": "miscutils:TileEntities/MACHINE_CASING_STABLE_POTIN_ctm"
+  }
 }

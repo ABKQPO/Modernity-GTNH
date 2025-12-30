@@ -2,12 +2,18 @@
   "animation": {
     "interpolate": true,
     "frames": [
-      {"index": 0, "time": 16},
-      {"index": 1, "time": 16}
+      {
+        "index": 0,
+        "time": 16
+      },
+      {
+        "index": 1,
+        "time": 16
+      }
     ]
   },
-    "myctmlib": {
-        "connection": "gregtech:iconsets/MACHINE_COIL_INFINITY_BACKGROUND_ctm",
-        "alt": "gregtech:iconsets/MACHINE_COIL_INFINITY_BACKGROUND_alt"
-    }
+  "myctmlib": {
+    "connection": "gregtech:iconsets/MACHINE_COIL_INFINITY_BACKGROUND_ctm",
+    "alt": "gregtech:iconsets/MACHINE_COIL_INFINITY_BACKGROUND_alt"
+  }
 }

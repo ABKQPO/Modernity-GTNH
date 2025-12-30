@@ -1,8 +1,8 @@
 {
-    "animation": {
-		"frametime": 10,
-		"interpolate": true
-	},
+  "animation": {
+    "frametime": 10,
+    "interpolate": true
+  },
   "myctmlib": {
     "connection": "GoodGenerator:compAsslineCasing/11_ctm",
     "equivalents": [
