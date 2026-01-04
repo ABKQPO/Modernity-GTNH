@@ -33,8 +33,5 @@
 	  1,
 	  1
     ]
-  },
-    "myctmlib": {
-        "connection": "gregtech:iconsets/OMNI_PURPOSE_INFINITY_FUSED_GLASS_ctm"
-    }
+  }
 }
