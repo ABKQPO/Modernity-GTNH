@@ -149,7 +149,7 @@ AE2 Dark Mode [AE2-Dark-Mode](https://github.com/Ranzuu/AE2-Dark-Mode)
 
 ### Auynonymous
 
-### June
+### Neura June and Neru June :3
 
 MCTBL
 
