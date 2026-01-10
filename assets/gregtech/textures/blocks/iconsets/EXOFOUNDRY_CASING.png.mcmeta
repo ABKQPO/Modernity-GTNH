@@ -1,0 +1,9 @@
+{
+  "myctmlib": {
+    "connection": "gregtech:iconsets/EXOFOUNDRY_CASING_ctm",
+"equivalents": [
+      "gregtech:iconsets/MACHINE_CASING_ITEM_PIPE_BLACK_PLUTONIUM"
+    ]
+
+  }
+}

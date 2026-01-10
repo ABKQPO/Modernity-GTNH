@@ -1,5 +1,9 @@
 {
   "myctmlib": {
-    "connection": "gregtech:iconsets/MACHINE_CASING_MS160_ctm"
+    "connection": "gregtech:iconsets/MACHINE_CASING_MS160_ctm",
+"equivalents": [
+      "gregtech:iconsets/EXOFOUNDRY_EXTRA_CASTING_BASINS"
+    ]
+
   }
 }
