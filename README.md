@@ -11,16 +11,6 @@
 </h1>
 
 <h2 align="center">
-  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/Modernity-GTNH-28x-Fix.zip" style="text-decoration: none;">
-    <strong><em>Download GTNH 2.8.x patch Resourcepack</em></strong>
-  </a>
-  <br>
-  <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/Modernity-GTNH-28x-Fix.zip">
-    <img src="https://img.shields.io/badge/release-v1.5.9-blue"
-         alt="Pre-release"
-         width="100">
-  </a>
-  <br><br>
   <a href="https://github.com/ABKQPO/Modernity-GTNH/releases/download/v1.5.9/Modernity-GTNH-v1.5.9.zip" style="text-decoration: none;">
     <strong><em>Download Latest Official Resourcepack</em></strong>
   </a>

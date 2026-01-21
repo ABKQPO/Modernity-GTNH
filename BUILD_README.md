@@ -1,9 +1,6 @@
 ## Modernity-GTNH
 The main resource pack. Needs to be placed at the very bottom of the resource pack load order.
 
-## Modernity-GTNH-28x-Fix
-Fix some textures for GTNH-2.8.x. Not need install for GNTH 2.7.x.
-
 > # **CTM Textures**
 > ## **CTMLIB IS REQUIRED FOR CONNECTED TEXTURES**
 > ### **Download the mod file for your corresponding GTNH version from the file list below**
