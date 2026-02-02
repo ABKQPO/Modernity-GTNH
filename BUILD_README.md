@@ -11,6 +11,9 @@ GUI resource pack providing AE2-style GUI textures inspired by Minecraft 1.21+.
 ## Modernity-GTNH-Dark-UI
 Dark GUI resource pack providing AE2-style dark GUI textures inspired by Minecraft 1.21+.
 
+## Modernity-GTNHAddon-GTNHColorComponent
+Change the colors of some components to better match GTNH rather than GTM.
+
 ## Modernity-GTNHAddon-OutlinedOres
 Ore edge highlight resource pack, giving ores more distinct and noticeable border colors.
 

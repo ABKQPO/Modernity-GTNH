@@ -12,11 +12,12 @@ env:
     pack.png
     README.md
 
-  TARGET_BRANCHES: "main no_mixed_color_gc_plate resonatic_circuit"
+  TARGET_BRANCHES: "main no_mixed_color_gc_plate resonatic_circuit gtnh_color"
 
   ZIP_NAME_main: "Modernity-GTNH-${{ github.event.release.tag_name }}.zip"
   ZIP_NAME_no_mixed_color_gc_plate: "Modernity-GTNH-NoMixinColorGCHeavyMaterial.zip"
   ZIP_NAME_resonatic_circuit: "Modernity-GTNH-GTNLResonaticCircuit.zip"
+  ZIP_NAME_gtnh_color: "Modernity-GTNHAddon-GTNHColorComponent.zip"
 
   EXTERNAL_REPOS: |
     OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
