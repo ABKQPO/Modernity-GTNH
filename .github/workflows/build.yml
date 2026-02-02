@@ -6,6 +6,7 @@ on:
       - main
       - no_mixed_color_gc_plate
       - resonatic_circuit
+      - gtnh_color
 
 jobs:
   build-and-release:
@@ -21,10 +22,11 @@ jobs:
         pack.png
         README.md
 
-      TARGET_BRANCHES: "main no_mixed_color_gc_plate resonatic_circuit"
+      TARGET_BRANCHES: "main no_mixed_color_gc_plate resonatic_circuit gtnh_color"
       ZIP_NAME_main: "Modernity-GTNH-{SHA}-pre.zip"
       ZIP_NAME_no_mixed_color_gc_plate: "Modernity-GTNHAddon-NoMixinColorGCHeavyMaterial.zip"
       ZIP_NAME_resonatic_circuit: "Modernity-GTNHAddon-GTNLResonaticCircuit.zip"
+      ZIP_NAME_gtnh_color: "Modernity-GTNH-GTNHColorComponent.zip"
 
       EXTERNAL_REPOS: |
         OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
