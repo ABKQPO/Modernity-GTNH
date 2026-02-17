@@ -1,5 +1,4 @@
-{
+{ "animation": { "frametime": 20, "interpolate": true, "frames": [ 0, { index: 0, time: 100 }, 1, { index: 1, time: 20 } ] } ,
   "myctmlib": {
     "connection": "gregtech:iconsets/MACHINE_COIL_ELECTRUMFLUX_BACKGROUND_ctm"
-  }
-}
+  }}
