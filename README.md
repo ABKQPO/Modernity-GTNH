@@ -67,7 +67,7 @@ The objective of this resource pack is to update all the textures of GTNH to the
 
 However, due to recent extensive changes and modifications being made to GTNH and its related Gregtech modules. ~~We are not currently updating the textures of GT~~ Currently in production.
 
-It's still work in progress, and it is expected to be compatible with GTNH version ~~2.6.0, 2.7.1~~  2.8.0
+It's still work in progress, and it is expected to be compatible with GTNH version ~~2.6.0, 2.7.1, 2.8.0~~ 2.9.0
 
 ## Features
 
