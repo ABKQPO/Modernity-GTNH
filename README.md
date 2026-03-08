@@ -111,7 +111,7 @@ AE2 Dark Mode [AE2-Dark-Mode](https://github.com/Ranzuu/AE2-Dark-Mode)
 
 [Modernity-GTNH-UI](https://github.com/ABKQPO/Modernity-GTNH-UI)
 
-~~[Modernity-GTNH-Dark-UI](https://github.com/ABKQPO/Modernity-GTNH-Dark-UI)~~ Not considering for now
+[Modernity-GTNH-Dark-UI](https://github.com/ABKQPO/Modernity-GTNH-Dark-UI)
 
 ## Additional Resourcepacks
 
