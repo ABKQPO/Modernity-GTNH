@@ -1,0 +1,4 @@
+# Made in Blockbench 5.0.7
+newmtl mat1
+map_Kd scanner.png
+newmtl none
