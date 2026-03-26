@@ -1,0 +1,2 @@
+Angelica/MCPatcherForge doesn't seem to respect resource pack loading order when files themselves are conflicting and overridden by another resource pack.
+MCPatcherForge also simply loads any .properties files in minecraft/mcpatcher/ctm recursively, so this is fine actually.
