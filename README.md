@@ -1,3 +1,10 @@
+## 🟥 NOTICE! PLEASE READ! 🟥
+
+### The links below currently do not work!
+
+Modernity is currently undergoing a large scale texture rework. There will be no new releases until it is completed. If you need the resourcepack, please click `Code -> Download ZIP` on the top right of the repo to download and use it yourself.
+
+
 <p align="center">
   <a href="https://github.com/ModernityGTNH/Modernity-GTNH/releases/latest">
     <img src="pack.png" width="150">
