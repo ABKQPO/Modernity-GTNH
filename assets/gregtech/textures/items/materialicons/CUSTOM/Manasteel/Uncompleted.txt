@@ -1,0 +1,111 @@
+Diamond:
+angle grinder head
+electric snips head
+trowel
+
+EMERALD DULL:
+angle grinder head
+electric snips head
+
+Fiery:
+angle grinder head
+electric snips head
+trowel
+
+FINE:
+angle grinder head
+electric snips head
+
+FLINT:
+angle grinder head
+electric snips head
+
+GEM_A GEM_HORIZONTAL GEM_VERTICAL:
+angle grinder head
+electric snips head
+
+LEAF:
+angle grinder head
+electric snips head
+
+MAGNETIC：
+angle grinder head
+electric snips head
+toolProspector (Luv Zpm Uv UHV)
+trowel
+
+NONE:
+blockCasing blockCasingAdvanced
+trowel hand
+angle grinder head
+electric snips head
+
+OPAL PAPER QUARTZ ROUGH RUBY WOOD:
+angle grinder head
+electric snips head
+
+REFINED：
+angle grinder head
+
+
+
+
+
+CUSTOM UPDATED(included):
+awakendroconium:
+angle grinder head
+electric snips head
+
+blaze:
+handleTrowel
+
+blizz:
+skip
+
+cosmicneutronium:
+pocket multitool series
+branch cutter
+crowbar
+angle grinder head
+buzz saw head
+chainsaw head
+drill head
+electronics snips head
+file head
+hammer head
+saw head
+screwdriver head
+solding head
+wrench head
+jack hammer
+knife
+butchery knife
+plunger
+prospector series
+scoop
+trowel
+turbine
+wire cutter
+wrench
+
+crude steel (ender io):
+new material! haha!
+
+
+
+
+
+
+
+
+
+New CUSTOM:
+Blizz
+crudesteel
+cryotheum
+crystallinepinkslime
+endsteel
+energeticsilver
+fluxed
+hypogen
+rhugnor
