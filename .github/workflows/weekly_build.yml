@@ -27,12 +27,13 @@ jobs:
       ZIP_NAME_gtnh_color: "Modernity-GTNHAddon-GTNHColorComponent.zip"
 
       EXTERNAL_REPOS: |
-        OutlinedOres-Modern=https://github.com/Ranzuu/OutlinedOres-Modern
+        OutlinedOres-Modern=https://github.com/Ranzuu/GTNH-OutlinedOres|modernity
         Just-Productive-Bees=https://github.com/DarkScorpyon/Just-Productive-Bees-
         Just-Forestry-Bees=https://github.com/DarkScorpyon/Just-Forestry-Bees-
         Medium-Large-Turbine=https://github.com/DarkScorpyon/Medium-Large-Turbine
         Modernity-GTNH-UI=https://github.com/ABKQPO/Modernity-GTNH-UI
         Modernity-GTNH-Dark-UI=https://github.com/ABKQPO/Modernity-GTNH-Dark-UI
+
       EXTERNAL_ZIP_NAME_OutlinedOres_Modern: "Modernity-GTNHAddon-OutlinedOres.zip"
       EXTERNAL_ZIP_NAME_Just_Productive_Bees: "Modernity-GTNHAddon-Just-Productive-Bees.zip"
       EXTERNAL_ZIP_NAME_Just_Forestry_Bees: "Modernity-GTNHAddon-Just-Forestry-Bees.zip"
@@ -78,7 +79,7 @@ jobs:
               fi
             done
             cd zip-root
-            zip -r "../$ZIP_NAME" ./ 
+            zip -r "../$ZIP_NAME" ./
             cd ..
           done
         shell: bash
@@ -93,14 +94,25 @@ jobs:
       - name: Download and package external repositories
         run: |
           mkdir external-zips
-          while IFS== read -r NAME URL; do
+
+          while IFS='=' read -r NAME REPO_INFO; do
             [ -z "$NAME" ] && continue
+
+            URL="${REPO_INFO%%|*}"
+
+            if [[ "$REPO_INFO" == *"|"* ]]; then
+              BRANCH="${REPO_INFO#*|}"
+            else
+              BRANCH="main"
+            fi
+
             SAFE_NAME="${NAME//-/_}"
             ZIP_VAR="EXTERNAL_ZIP_NAME_${SAFE_NAME}"
             ZIP_NAME="${!ZIP_VAR}"
 
-            echo "Cloning $URL as $NAME ..."
-            git clone --depth=1 "$URL" "$NAME"
+            echo "Cloning $URL as $NAME (branch: $BRANCH) ..."
+
+            git clone --depth=1 --branch "$BRANCH" "$URL" "$NAME"
 
             ZIP_DIR="external-zips/${NAME}-zip-root"
             mkdir -p "$ZIP_DIR"
@@ -120,6 +132,7 @@ jobs:
         shell: bash
         env:
           INCLUDE_PATHS: ${{ env.INCLUDE_PATHS }}
+          EXTERNAL_REPOS: ${{ env.EXTERNAL_REPOS }}
           EXTERNAL_ZIP_NAME_OutlinedOres_Modern: ${{ env.EXTERNAL_ZIP_NAME_OutlinedOres_Modern }}
           EXTERNAL_ZIP_NAME_Just_Productive_Bees: ${{ env.EXTERNAL_ZIP_NAME_Just_Productive_Bees }}
           EXTERNAL_ZIP_NAME_Just_Forestry_Bees: ${{ env.EXTERNAL_ZIP_NAME_Just_Forestry_Bees }}
